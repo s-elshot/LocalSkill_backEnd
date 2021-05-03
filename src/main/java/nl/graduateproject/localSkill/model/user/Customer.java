@@ -52,19 +52,17 @@ public class Customer {
     private CustomerType userRole;
 
     @OneToMany(
-            mappedBy = "customer"
-//            ,
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
     private List<Item> items = new ArrayList<>();
 
     @OneToMany(
-            mappedBy = "customer"
-//            ,
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
     private List<Order> orders = new ArrayList<>();

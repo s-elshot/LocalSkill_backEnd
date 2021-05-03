@@ -16,7 +16,6 @@ import java.net.URI;
 public class OrderController {
 
 
-    // controller handles HTTP-requests or API
     @Autowired
     private OrderService orderService;
 

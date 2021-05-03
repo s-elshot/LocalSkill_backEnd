@@ -13,8 +13,6 @@ import java.net.URI;
 @RequestMapping(value = "/item")
 public class ItemController {
 
-
-    // controller handles HTTP-requests or API
     @Autowired
     private ItemService itemService;
 
