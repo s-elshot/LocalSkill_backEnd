@@ -13,6 +13,8 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/customer")
+// remove when working
+@CrossOrigin("*")
 public class CustomerController {
 
     // controller handles HTTP-requests or API

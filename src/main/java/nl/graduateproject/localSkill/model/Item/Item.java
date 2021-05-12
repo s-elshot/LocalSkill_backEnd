@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.graduateproject.localSkill.model.order.Order;
 import nl.graduateproject.localSkill.model.user.Customer;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Table
 @Entity(name = "items")
@@ -32,6 +34,9 @@ public class Item {
     @Column(nullable = false)
     private int count;
 
+    @Column
+    private byte[] content;
+
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
@@ -39,8 +44,12 @@ public class Item {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @ManyToMany(mappedBy ="orderedItems" )
-//    private List<Order> orders = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToMany(mappedBy ="orderedItems" )
+    private List<Order> orders = new ArrayList<>();
 
     public Item() {
     }
@@ -96,6 +105,14 @@ public class Item {
         this.count = count;
     }
 
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
     public ItemType getItemType() {
         return itemType;
     }
@@ -112,12 +129,20 @@ public class Item {
         this.customer = customer;
     }
 
-//    public List<Order> getOrders() {
-//        return orders;
-//    }
-//
-//    public void setOrders(List<Order> orders) {
-//        this.orders = orders;
-//    }
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
 

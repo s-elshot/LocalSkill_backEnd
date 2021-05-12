@@ -11,6 +11,7 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     public abstract Collection<Customer> findAllByAreaCode(String areaCode);
 
+
     public abstract Collection<Customer> findAllByLastName(String lastName);
     // handles or translates the sql/database requests
     // query - defines methods that can be used in the controller-class

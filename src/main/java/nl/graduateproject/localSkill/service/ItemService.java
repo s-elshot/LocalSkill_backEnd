@@ -27,16 +27,9 @@ public interface ItemService {
 
     public abstract boolean itemExistsById(long id);
 
+    Collection<Item> findItemByCustomerAreaCodeMatches(String areaCode);
 
-//    Collection<Item> findAll();
-////    List<Item> findAll();
-//    Item getItemById(long id);
-//    Collection<Item> getItems(String name);
-//    long createItem(Item item);
-//    void  updateItem(long id, Item item);
-//    void partialUpdateItem(long id, Map<String,String> fields);
-//    List<Item>getItemNameStartsWith(String name);
-//    void deleteItem(long id);
+
 
 //    public abstract long createItem(Item item);
 ////    public abstract void updateItem (long id, Item item);
@@ -45,13 +38,6 @@ public interface ItemService {
 //    public abstract void deleteItem(long id);
 //    public abstract Collection<Item> getItems();
 
-
-//    public abstract Collection<Item> getItemsByDescription (String description);
-//    public abstract Collection<Item> getItemsByGuild (String guild);
-//    public abstract Collection<Item> findAll();
-
-//    public abstract Optional<Item> getItemsById(long id);
-//    public abstract boolean itemExistsById(Long id);
 
 
 }

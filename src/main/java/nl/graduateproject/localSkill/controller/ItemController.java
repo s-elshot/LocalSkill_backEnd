@@ -11,6 +11,8 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/item")
+// remove when working
+@CrossOrigin("*")
 public class ItemController {
 
     @Autowired

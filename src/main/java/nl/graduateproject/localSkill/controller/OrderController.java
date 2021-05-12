@@ -13,6 +13,8 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/order")
+// remove when working
+@CrossOrigin("*")
 public class OrderController {
 
 

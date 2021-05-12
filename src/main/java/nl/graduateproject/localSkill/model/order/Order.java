@@ -7,29 +7,46 @@ import nl.graduateproject.localSkill.model.Item.Item;
 import nl.graduateproject.localSkill.model.user.Customer;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Table
-@Entity(name = "orders")
+@Entity
+        (name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
+    private LocalDate date;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @ManyToMany
-//    @JoinTable(
-//                name = "ordered_items",
-//            joinColumns = @JoinColumn(name = "orders_id"),
-//            inverseJoinColumns = @JoinColumn(name = "items_id")
-//            )
-////    @JsonIgnore
-//    private List<Item> orderedItems = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnoreProperties("order_id")
+    private List<Item> items = new ArrayList<>();
+
+
+
+    @ManyToMany
+    @JoinTable(
+                name = "ordered_items",
+            joinColumns = @JoinColumn(name = "orders_id"),
+            inverseJoinColumns = @JoinColumn(name = "items_id")
+            )
+    @JsonIgnoreProperties("orders")
+    private List<Item> orderedItems = new ArrayList<>();
+
 
 
     public Order() {
@@ -43,6 +60,14 @@ public class Order {
         this.id = id;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -51,12 +76,20 @@ public class Order {
         this.customer = customer;
     }
 
-//    public List<Item> getOrderedItems() {
-//        return orderedItems;
-//    }
-//
-//    public void setOrderedItems(List<Item> orderedItems) {
-//        this.orderedItems = orderedItems;
-//    }
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Item> getOrderedItems() {
+        return orderedItems;
+    }
+
+    public void setOrderedItems(List<Item> orderedItems) {
+        this.orderedItems = orderedItems;
+    }
 }
 

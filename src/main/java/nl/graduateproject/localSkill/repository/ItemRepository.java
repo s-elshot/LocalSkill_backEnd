@@ -9,4 +9,7 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByNameStartsWith(String name);
+//    List<Item> findItemByCustomerAreaCodeMatches(String areaCode);
+
+
 }

@@ -76,4 +76,9 @@ public class ItemServiceImpl implements ItemService {
     public boolean itemExistsById(long id) {
         return itemRepository.existsById(id);
     }
+
+    @Override
+    public Collection<Item> findItemByCustomerAreaCodeMatches(String areaCode){
+        return itemRepository.findAllByNameStartsWith(areaCode);
+    }
 }
