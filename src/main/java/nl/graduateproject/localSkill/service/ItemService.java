@@ -2,6 +2,7 @@ package nl.graduateproject.localSkill.service;//package com.graduateproject.loca
 
 
 import nl.graduateproject.localSkill.model.Item.Item;
+import nl.graduateproject.localSkill.model.Item.ItemType;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +13,7 @@ public interface ItemService {
 
 
     Collection<Item> getItemsByName(String name);
+
 
     long createItem(Item item);
 

@@ -17,11 +17,6 @@ public interface CustomerService {
     public abstract Collection<Customer> getCustomers(String name, String lastName);
     public abstract Optional<Customer> getCustomerById(long id);
   public abstract boolean customerExistsById(long id);
-//  public Collection<Item> getItemsByDescription (String description);
-//  public Collection<Item> getItemsByGuild (String guild);
-//  public abstract Collection<Customer> getCustomersByLastName(String name);
-//  public abstract Collection<Customer> getCustomersByAreaCode(String areaCode);
-
 
 
 }

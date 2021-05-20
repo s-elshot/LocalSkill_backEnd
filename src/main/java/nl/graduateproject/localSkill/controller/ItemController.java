@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/item")
@@ -40,6 +41,12 @@ public class ItemController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateItem(@PathVariable("id") long id, @RequestBody Item item) {
         itemService.updateItem(id, item);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Object> partialUpdateItem(@PathVariable("id") long id, @RequestBody Map<String, String> fields) {
+        itemService.partialUpdateItem(id, fields);
         return ResponseEntity.noContent().build();
     }
 

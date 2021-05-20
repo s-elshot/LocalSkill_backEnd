@@ -2,6 +2,7 @@ package nl.graduateproject.localSkill.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.graduateproject.localSkill.model.Item.Item;
+import nl.graduateproject.localSkill.model.message.Message;
 import nl.graduateproject.localSkill.model.order.Order;
 
 import javax.persistence.*;
@@ -59,6 +60,7 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Item> items = new ArrayList<>();
 
+
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
@@ -66,6 +68,15 @@ public class Customer {
     )
     @JsonIgnoreProperties("customer")
     private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnoreProperties("customer")
+    private List<Message>messages = new ArrayList<>();
+
 
 
     public Customer() {

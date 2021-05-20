@@ -4,6 +4,7 @@ package nl.graduateproject.localSkill.model.order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.graduateproject.localSkill.model.Item.Item;
+import nl.graduateproject.localSkill.model.message.Message;
 import nl.graduateproject.localSkill.model.user.Customer;
 
 import javax.persistence.*;
@@ -11,8 +12,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table
 @Entity
+@Table
         (name = "orders")
 public class Order {
 
@@ -44,8 +45,11 @@ public class Order {
             joinColumns = @JoinColumn(name = "orders_id"),
             inverseJoinColumns = @JoinColumn(name = "items_id")
             )
-    @JsonIgnoreProperties("orders")
+    @JsonIgnoreProperties( "orders" )
     private List<Item> orderedItems = new ArrayList<>();
+
+    @OneToOne
+    private Message message;
 
 
 
@@ -90,6 +94,14 @@ public class Order {
 
     public void setOrderedItems(List<Item> orderedItems) {
         this.orderedItems = orderedItems;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }
 

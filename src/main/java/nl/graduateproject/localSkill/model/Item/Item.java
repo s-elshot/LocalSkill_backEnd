@@ -1,18 +1,19 @@
 package nl.graduateproject.localSkill.model.Item;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import nl.graduateproject.localSkill.model.image.Image;
 import nl.graduateproject.localSkill.model.order.Order;
 import nl.graduateproject.localSkill.model.user.Customer;
 
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 @Table
-@Entity(name = "items")
+        (name = "items")
 public class Item {
 
     @Id
@@ -34,9 +35,6 @@ public class Item {
     @Column(nullable = false)
     private int count;
 
-    @Column
-    private byte[] content;
-
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
@@ -50,6 +48,14 @@ public class Item {
 
     @ManyToMany(mappedBy ="orderedItems" )
     private List<Order> orders = new ArrayList<>();
+
+@OneToMany(
+           mappedBy ="item",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+   @JsonIgnoreProperties("item")
+    private List<Image> images  = new ArrayList<>();
 
     public Item() {
     }
@@ -105,14 +111,6 @@ public class Item {
         this.count = count;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
     public ItemType getItemType() {
         return itemType;
     }
@@ -143,6 +141,14 @@ public class Item {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
 
