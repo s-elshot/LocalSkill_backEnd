@@ -30,27 +30,38 @@ public class Order {
 
 
     @OneToMany(
-            mappedBy = "order",
+            mappedBy = "orders",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonIgnoreProperties("order_id")
+    @JsonIgnoreProperties("orders_id")
     private List<Item> items = new ArrayList<>();
-
 
 
     @ManyToMany
     @JoinTable(
-                name = "ordered_items",
+            name = "ordered_items",
             joinColumns = @JoinColumn(name = "orders_id"),
             inverseJoinColumns = @JoinColumn(name = "items_id")
-            )
-    @JsonIgnoreProperties( "orders" )
+    )
+    @JsonIgnoreProperties("orders")
     private List<Item> orderedItems = new ArrayList<>();
 
-    @OneToOne
-    private Message message;
 
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    @OneToOne(
+            mappedBy = "order",
+            cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("orders")
+    @PrimaryKeyJoinColumn
+    private Message message;
 
 
     public Order() {
@@ -96,12 +107,7 @@ public class Order {
         this.orderedItems = orderedItems;
     }
 
-    public Message getMessage() {
-        return message;
-    }
 
-    public void setMessage(Message message) {
-        this.message = message;
-    }
+
 }
 

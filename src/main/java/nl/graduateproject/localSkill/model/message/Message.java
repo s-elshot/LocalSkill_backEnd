@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.model.message;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.graduateproject.localSkill.model.Item.Item;
 import nl.graduateproject.localSkill.model.order.Order;
 import nl.graduateproject.localSkill.model.user.Customer;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table
         (name = "messages")
-public class Message{
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +31,9 @@ public class Message{
     private LocalDate date;
 
     @OneToOne
+    @JoinColumn(name = "orders_id")
     private Order order;
+
 
     public Message() {
     }
