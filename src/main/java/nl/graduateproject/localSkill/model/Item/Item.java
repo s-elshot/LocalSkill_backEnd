@@ -46,16 +46,15 @@ public class Item {
     @JoinColumn(name = "orders_id")
     private Order order;
 
-    @ManyToMany(mappedBy ="orderedItems" )
-    private List<Order> orders = new ArrayList<>();
 
-@OneToMany(
+    @OneToMany(
            mappedBy ="item",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
    @JsonIgnoreProperties("item")
     private List<Image> images  = new ArrayList<>();
+
 
     public Item() {
     }
@@ -127,28 +126,20 @@ public class Item {
         this.customer = customer;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     public List<Image> getImages() {
         return images;
     }
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
 

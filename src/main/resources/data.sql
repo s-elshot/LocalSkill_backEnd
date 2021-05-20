@@ -33,11 +33,11 @@ values ( '2');
 -- insert into orders( customer_id)
 -- values ( '2');
 
-insert into ordered_items(orders_id,items_id)
-values ( '1','1');
-
-insert into ordered_items(orders_id,items_id)
-values ( '1','2');
+-- insert into ordered_items(orders_id,items_id)
+-- values ( '1','1');
+--
+-- insert into ordered_items(orders_id,items_id)
+-- values ( '1','2');
 --
 --
 
@@ -92,8 +92,8 @@ values ('Nike Air Mag Back to the Future 2016', 25000, 'One of recent year´s mo
 
 -- service
 
-insert into items(name, price, description, number,count, item_type, customer_id)
-values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,5, 'SERVICE', '1');
+insert into items(name, price, description, number,count, item_type, customer_id,orders_id)
+values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,5, 'SERVICE', '1',1);
 
 insert into items(name, price, description, number,count, item_type, customer_id)
 values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,51, 'SERVICE', '2');
@@ -101,16 +101,16 @@ values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,51, 
 -- messages
 insert into messages(title, body_text,customer_id)
 values ('Did it Work?','A check of this relationship is modeled correctly',1);
--- insert into messages(title, body_text,orders_id,customer_id)
--- values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3,1);
+insert into messages(title, body_text,customer_id)
+values ('Yes it worked!','A confirmation of this relationship is modeled correctly',1);
 -- images
 insert into images(name,description,items_id)
 values ('Sneaker01','A photo of the Jordan x',4);
 
 --ORDERS
 --
--- insert into orders( customer_id)
--- values ( '1');
+insert into orders( customer_id)
+values ( '3');
 --
 insert into orders(customer_id)
 values ( '1');
@@ -118,8 +118,8 @@ values ( '1');
 insert into orders( customer_id)
 values ( '1');
 
-insert into ordered_items(orders_id,items_id)
-values ( '1','1');
+-- insert into ordered_items(orders_id,items_id)
+-- values ( '1','1');
 
 -- INSERT INTO authority (username, authority) VALUES ('user', 'ROLE_USER');
 -- INSERT INTO authority (username, authority) VALUES ('admin', 'ROLE_USER');

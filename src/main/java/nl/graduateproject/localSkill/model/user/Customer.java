@@ -67,7 +67,7 @@ public class Customer {
             orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> order = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "customer",
@@ -170,12 +170,12 @@ public class Customer {
         this.items = items;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<Order> getOrder() {
+        return order;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrder(List<Order> order) {
+        this.order = order;
     }
 
     public List<Message> getMessages() {

@@ -1,7 +1,7 @@
 package nl.graduateproject.localSkill.model.order;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.graduateproject.localSkill.model.Item.Item;
 import nl.graduateproject.localSkill.model.message.Message;
@@ -28,33 +28,15 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
     @OneToMany(
-            mappedBy = "orders",
+            mappedBy = "order",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonIgnoreProperties("orders_id")
-    private List<Item> items = new ArrayList<>();
+    @JsonIgnoreProperties( "orders" )
+    private List<Item>items = new ArrayList<>();
 
-
-    @ManyToMany
-    @JoinTable(
-            name = "ordered_items",
-            joinColumns = @JoinColumn(name = "orders_id"),
-            inverseJoinColumns = @JoinColumn(name = "items_id")
-    )
-    @JsonIgnoreProperties("orders")
-    private List<Item> orderedItems = new ArrayList<>();
-
-
-    public Message getMessage() {
-        return message;
-    }
-
-    public void setMessage(Message message) {
-        this.message = message;
-    }
+    // BUGGED - IF INSERTED ORDER_ID IN POSTGRES: APPLICATION CRASHES
 
     @OneToOne(
             mappedBy = "order",
@@ -99,15 +81,12 @@ public class Order {
         this.items = items;
     }
 
-    public List<Item> getOrderedItems() {
-        return orderedItems;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setOrderedItems(List<Item> orderedItems) {
-        this.orderedItems = orderedItems;
+    public void setMessage(Message message) {
+        this.message = message;
     }
-
-
-
 }
 
