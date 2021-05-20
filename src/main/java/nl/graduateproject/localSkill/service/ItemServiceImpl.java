@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.service;//package com.graduateproject.localSkill.service;
 //
+
 import nl.graduateproject.localSkill.model.Item.Item;
 //import nl.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
@@ -28,8 +29,6 @@ public class ItemServiceImpl implements ItemService {
     public Collection<Item> getItemsByName(String name) {
         return itemRepository.findAllByNameStartsWith(name);
     }
-
-
 
     @Override
     public long createItem(Item item) {
@@ -64,7 +63,7 @@ public class ItemServiceImpl implements ItemService {
                     item.setName(fields.get(field));
                     break;
                 case "price":
-                    item.setPrice((Double.parseDouble( fields.get(field))));
+                    item.setPrice((Double.parseDouble(fields.get(field))));
                     break;
                 case "description":
                     item.setDescription(fields.get(field));
@@ -100,7 +99,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Collection<Item> findItemByCustomerAreaCodeMatches(String areaCode){
+    public Collection<Item> findItemByCustomerAreaCodeMatches(String areaCode) {
         return itemRepository.findAllByNameStartsWith(areaCode);
     }
 }

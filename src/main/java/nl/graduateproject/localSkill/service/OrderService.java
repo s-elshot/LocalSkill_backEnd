@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface OrderService {
 
 
-    long createOrder(Order order);
+    public abstract long createOrder(Order order);
 
     public abstract void updateOrder(long id, Order order);
 
