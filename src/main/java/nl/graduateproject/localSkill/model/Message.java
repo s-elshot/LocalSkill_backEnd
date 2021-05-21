@@ -30,9 +30,9 @@ public class Message {
     @Column
     private LocalDate date;
 
-    @OneToOne
-    @JoinColumn(name = "orders_id")
-    private Order order;
+//    @OneToOne
+//    @JoinColumn(name = "orders_id")
+//    private Order order;
 
 
     public Message() {
@@ -78,11 +78,11 @@ public class Message {
         this.date = date;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
 }

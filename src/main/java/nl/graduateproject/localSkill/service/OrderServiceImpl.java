@@ -3,9 +3,6 @@ package nl.graduateproject.localSkill.service;//package com.graduateproject.loca
 //import com.graduateproject.localSkill.model.Item.Item;
 //import com.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
-import nl.graduateproject.localSkill.model.Item.Item;
-import nl.graduateproject.localSkill.model.order.Order;
-import nl.graduateproject.localSkill.repository.ItemRepository;
 import nl.graduateproject.localSkill.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
