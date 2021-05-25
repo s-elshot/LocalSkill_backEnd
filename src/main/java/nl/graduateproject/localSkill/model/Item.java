@@ -1,9 +1,8 @@
-package nl.graduateproject.localSkill.model.Item;
+package nl.graduateproject.localSkill.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import nl.graduateproject.localSkill.model.image.Image;
-import nl.graduateproject.localSkill.model.order.Order;
-import nl.graduateproject.localSkill.model.user.Customer;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -12,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+// @NoArgsConstructor: This adds a no-arguments constructor to the class.
+@Data
+// @DATA = LOMBOK = Generates getters and setters
 @Table
         (name = "items")
 public class Item {
@@ -32,7 +35,8 @@ public class Item {
     @Column
     private int number;
 
-    @Column(nullable = false)
+    @Column
+//            (nullable = false)
     private int count;
 
     @Enumerated(EnumType.STRING)
@@ -42,104 +46,15 @@ public class Item {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "orders_id")
-    private Order order;
-
-
     @OneToMany(
-           mappedBy ="item",
+            mappedBy ="item",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-   @JsonIgnoreProperties("item")
+    @JsonIgnoreProperties("item")
     private List<Image> images  = new ArrayList<>();
 
+    @ManyToMany(mappedBy ="invoiceItems" )
+    private List<Invoice> invoices = new ArrayList<>();
 
-    public Item() {
-    }
-
-    // getter and setters
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public ItemType getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(ItemType itemType) {
-        this.itemType = itemType;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }
-

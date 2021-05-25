@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.Item.Item;
+import nl.graduateproject.localSkill.model.Item;
 import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+
     @GetMapping(value = "")
     public ResponseEntity<Object> getItems() {
         return ResponseEntity.ok().body(itemService.getItems());
@@ -29,6 +30,10 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.getItemById(id));
     }
 
+    @GetMapping(value = "/{areaCode}")
+    public ResponseEntity<Object> getItemsByArea(@PathVariable("areaCode") String areaCode){
+        return ResponseEntity.ok(itemService.findItemsByCustomerAreaCode(areaCode));
+    };
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createItem(@RequestBody Item item) {
@@ -56,6 +61,7 @@ public class ItemController {
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();
     }
+
 
 
 }

@@ -1,5 +1,5 @@
 package nl.graduateproject.localSkill.service;
-import nl.graduateproject.localSkill.model.message.Message;
+import nl.graduateproject.localSkill.model.Message;
 
 import java.util.Collection;
 import java.util.Optional;

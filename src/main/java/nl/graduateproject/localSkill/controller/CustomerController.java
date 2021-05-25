@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.user.Customer;
+import nl.graduateproject.localSkill.model.Customer;
 import nl.graduateproject.localSkill.service.CustomerService;
 import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +21,22 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private ItemService itemService;
-
-    @GetMapping(value = "/all")
-    public ResponseEntity<Object> getItems() {
-        return ResponseEntity.ok().body(itemService.getItems());
-    }
 
     @GetMapping(value = "")
-    public ResponseEntity<Object> getCustomers(@RequestParam(name = "firstName", defaultValue = "") String firstName,
-                                               @RequestParam(name = "lastName", defaultValue = "") String lastName) {
-        return ResponseEntity.ok().body(customerService.getCustomers(firstName, lastName));
+    public ResponseEntity<Object> getCustomers() {
+        return ResponseEntity.ok().body(customerService.getAllCustomers());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> getCustomer(@PathVariable("id") long id) {
+    public ResponseEntity<Object> getCustomerById(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(customerService.getCustomerById(id));
+    }
+
+    @GetMapping(value = "/{areaCode}")
+    public ResponseEntity<Object> getAllByAreaCode(@RequestParam(name = "firstName", defaultValue = "") String firstName,
+                                               @RequestParam(name = "lastName", defaultValue = "") String lastName,
+                                                @RequestParam(name = "areaCode", defaultValue = "") String areaCode){
+        return ResponseEntity.ok(customerService.getCustomersByAreaCode(firstName, lastName, areaCode));
     }
 
     @PostMapping(value = "")

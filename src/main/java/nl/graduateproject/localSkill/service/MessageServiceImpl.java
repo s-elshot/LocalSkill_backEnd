@@ -1,8 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.image.Image;
-import nl.graduateproject.localSkill.model.message.Message;
-import nl.graduateproject.localSkill.repository.ImageRepository;
+import nl.graduateproject.localSkill.model.Message;
 import nl.graduateproject.localSkill.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

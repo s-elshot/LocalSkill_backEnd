@@ -4,32 +4,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
-@Entity
+@Data
 @NoArgsConstructor
 // @NoArgsConstructor: This adds a no-arguments constructor to the class.
-@Data
 // @DATA = LOMBOK = Generates getters and setters
+@Entity
 @Table
-        (name = "messages")
-public class Message {
+public class TestKlasse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private Long id;
 
     @Column
-    private String title;
+    private String name;
 
     @Column
-    private String bodyText;
+    private String type;
 
     @Column
-    private LocalDate date;
+    private Long size;
 
+    @Column
+    private String description;
 }

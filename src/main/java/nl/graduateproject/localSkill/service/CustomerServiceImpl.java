@@ -1,13 +1,14 @@
 package nl.graduateproject.localSkill.service;
 
 
-import nl.graduateproject.localSkill.model.user.Customer;
+import nl.graduateproject.localSkill.model.Customer;
+import nl.graduateproject.localSkill.model.Image;
+import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,10 +22,26 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+//    @Override
+//    public Collection<Customer> getCustomers(String firstName, String lastName) {
+//        return customerRepository.findAll();
+//    }
+
     @Override
-    public Collection<Customer> getCustomers(String firstName, String lastName) {
+    public Collection<Customer> getAllCustomers(){
         return customerRepository.findAll();
     }
+
+    @Override
+    public Optional<Customer> getCustomerById(long id) {
+        if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
+        return customerRepository.findById(id);
+    }
+
+    @Override
+    public Collection<Customer> findAllByAreaCode(String areaCode){
+        return customerRepository.findAllByAreaCode(areaCode);
+    };
 
     @Override
     public Collection<Customer> getCustomersByLastName(String lastName) {
@@ -32,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Collection<Customer> getCustomersByAreaCode(String areaCode) {
+    public Collection<Customer> getCustomersByAreaCode(String firstName, String lastName, String areaCode) {
         return customerRepository.findAllByAreaCode(areaCode);
     }
 
@@ -62,11 +79,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(id);
     }
 
-    @Override
-    public Optional<Customer> getCustomerById(long id) {
-        if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
-        return customerRepository.findById(id);
-    }
 
 
     @Override

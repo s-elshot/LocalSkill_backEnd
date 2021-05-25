@@ -1,8 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.Item.Item;
-import nl.graduateproject.localSkill.model.message.Message;
-import nl.graduateproject.localSkill.service.ItemService;
+import nl.graduateproject.localSkill.model.Message;
 import nl.graduateproject.localSkill.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Map;
 
 
 @RestController

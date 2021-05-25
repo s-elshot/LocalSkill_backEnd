@@ -1,15 +1,17 @@
-package nl.graduateproject.localSkill.model.user;
+package nl.graduateproject.localSkill.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import nl.graduateproject.localSkill.model.Item.Item;
-import nl.graduateproject.localSkill.model.message.Message;
-import nl.graduateproject.localSkill.model.order.Order;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Data
+@NoArgsConstructor
+// @NoArgsConstructor: This adds a no-arguments constructor to the class.
+// @DATA = LOMBOK = Generates getters and setters
 @Entity
 @Table
 public class Customer {
@@ -34,7 +36,6 @@ public class Customer {
 
     @Column
     private String city;
-
 
     @Column
 //            (nullable = false)
@@ -67,7 +68,7 @@ public class Customer {
             orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
-    private List<Order> order = new ArrayList<>();
+    private List<Message>messages = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "customer",
@@ -75,114 +76,8 @@ public class Customer {
             orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
-    private List<Message>messages = new ArrayList<>();
+    private List<Invoice>invoices = new ArrayList<>();
 
-
-
-    public Customer() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmailAdress() {
-        return emailAdress;
-    }
-
-    public void setEmailAdress(String emailAdress) {
-        this.emailAdress = emailAdress;
-    }
-
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getGuild() {
-        return guild;
-    }
-
-    public void setGuild(String guild) {
-        this.guild = guild;
-    }
-
-    public CustomerType getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(CustomerType userRole) {
-        this.userRole = userRole;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public List<Order> getOrder() {
-        return order;
-    }
-
-    public void setOrder(List<Order> order) {
-        this.order = order;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
 }
+
+

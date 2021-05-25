@@ -1,7 +1,8 @@
 package nl.graduateproject.localSkill.service;//package com.graduateproject.localSkill.service;
 //
 
-import nl.graduateproject.localSkill.model.Item.Item;
+import nl.graduateproject.localSkill.model.Customer;
+import nl.graduateproject.localSkill.model.Item;
 //import nl.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
 import nl.graduateproject.localSkill.repository.ItemRepository;
@@ -93,13 +94,17 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.findById(id);
     }
 
+
+
     @Override
     public boolean itemExistsById(long id) {
         return itemRepository.existsById(id);
     }
 
     @Override
-    public Collection<Item> findItemByCustomerAreaCodeMatches(String areaCode) {
-        return itemRepository.findAllByNameStartsWith(areaCode);
+    public List<Customer> findItemsByCustomerAreaCode(String areaCode) {
+        return itemRepository.findItemsByCustomerAreaCode(areaCode);
     }
+
+
 }

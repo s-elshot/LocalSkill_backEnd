@@ -3,29 +3,38 @@
 -- INSERT INTO users (username, password, enabled) VALUES ('peter', '$2a$10$wPHxwfsfTnOJAdgYcerBt.utdAvC24B/DWfuXfzKBSDHO0etB1ica', TRUE);
 
 
+
 insert into customer(first_name, last_name, email_adress, area_code, user_role, enabled,  city)
 values ('Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','CUSTOMER',TRUE,'Beverwijk');
 insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild )
 values ('Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker');
 
+insert into invoice(description)
+values ( 'first test');
+insert into invoice(description)
+values ( 'first test');
+
+insert into invoice(customer_id ,description)
+values ( '2', 'second test - customer with items');
+
 insert into customer(first_name, last_name, email_adress, area_code, enabled,user_role,  city)
 values ('Michel', 'Lalmohamed', 'mlalmohamed@gmail.com', '1946AL',TRUE,'CUSTOMER','Beverwijk');
 insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild )
-values ('Zhara', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker');
+values ('Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker');
 
 insert into items(name, price, description, number,count, item_type)
 values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,1, 'SERVICE');
 insert into items(name, price, description, number,count, item_type)
 values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,1, 'SERVICE');
 
-insert into orders( customer_id)
-values ( '1');
-
-insert into orders( customer_id)
-values ( '1');
-
-insert into orders( customer_id)
-values ( '2');
+-- insert into order( customer_id)
+-- values ( '1');
+--
+-- insert into order( customer_id)
+-- values ( '1');
+--
+-- insert into order( customer_id)
+-- values ( '2');
 --
 -- insert into orders(customer_id)
 -- values ( '1');
@@ -33,11 +42,11 @@ values ( '2');
 -- insert into orders( customer_id)
 -- values ( '2');
 
--- insert into ordered_items(orders_id,items_id)
--- values ( '1','1');
---
--- insert into ordered_items(orders_id,items_id)
--- values ( '1','2');
+insert into invoice_items(invoice_id,items_id)
+values ( '1','1');
+
+insert into invoice_items(invoice_id,items_id)
+values ( '1','2');
 --
 --
 
@@ -64,7 +73,6 @@ values ( '2');
 
 
 -- PRODUCT
---product
 insert into items(name, price, description, number, count, item_type, customer_id)
 values ('Air Jordan I High Strap Just Don BHM - 2015', 10000, 'The shoes featured the 2015 edition of Nike’s Black History Month graphic print with black lining and gold tipped laces and gold buckle on the ankle strap.', 01, 2, 'PRODUCT', '1');
 
@@ -75,7 +83,7 @@ insert into items(name, price, description, number, count, item_type, customer_i
 values ('Nike x MSCHF Air Max 97 Jesus Shoes –  Walk On Water', 4000, 't turns out walking on water is indeed possible.', 01, 2, 'PRODUCT', '1');
 
 insert into items(name, price, description, number, count, item_type, customer_id)
-values ('Nike Yeezy 2 Red October', 7500, 'Before Kanye West signed to adidas, the legendary Yeezy shoes used to be released under Nike.', 02, 10, 'PRODUCT', '2');
+values ('Nike Yeezy 2 Red October', 7500, 'Before Kanye West signed to adidas, the legendary Yeezy shoes used to be released under Nike.', 02, 10, 'PRODUCT', 2);
 
 insert into items(name, price, description, number, count, item_type, customer_id)
 values ('Chanel x Pharrell x adidas NMD Hu', 10000, 'Most of the Pharrell x adidas NMD Human Race collaboration fetched a high resell price.', 01, 2, 'PRODUCT', '1');
@@ -92,8 +100,8 @@ values ('Nike Air Mag Back to the Future 2016', 25000, 'One of recent year´s mo
 
 -- service
 
-insert into items(name, price, description, number,count, item_type, customer_id,orders_id)
-values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,5, 'SERVICE', '1',1);
+insert into items(name, price, description, number,count, item_type, customer_id)
+values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,5, 'SERVICE', 1);
 
 insert into items(name, price, description, number,count, item_type, customer_id)
 values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,51, 'SERVICE', '2');
@@ -104,19 +112,20 @@ values ('Did it Work?','A check of this relationship is modeled correctly',1);
 insert into messages(title, body_text,customer_id)
 values ('Yes it worked!','A confirmation of this relationship is modeled correctly',1);
 -- images
-insert into images(name,description,items_id)
-values ('Sneaker01','A photo of the Jordan x',4);
+insert into images(name,type,items_id)
+values ('Sneaker01','jpg','4');
 
 --ORDERS
 --
-insert into orders( customer_id)
-values ( '3');
---
-insert into orders(customer_id)
-values ( '1');
 
-insert into orders( customer_id)
-values ( '1');
+
+
+--
+-- insert into orders(customer_id)
+-- values ( '1');
+--
+-- insert into orders( customer_id)
+-- values ( '1');
 
 -- insert into ordered_items(orders_id,items_id)
 -- values ( '1','1');
