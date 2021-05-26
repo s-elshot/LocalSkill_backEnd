@@ -1,6 +1,7 @@
 package nl.graduateproject.localSkill.controller;
 
 import nl.graduateproject.localSkill.model.Customer;
+import nl.graduateproject.localSkill.model.CustomerType;
 import nl.graduateproject.localSkill.service.CustomerService;
 import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Optional;
 
 
 @RestController
@@ -32,17 +34,20 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerService.getCustomerById(id));
     }
 
+    @GetMapping(value = "/role/{userRole}")
+    public ResponseEntity<Object> getUserByRole(@PathVariable("userRole") CustomerType userRole){
+        return ResponseEntity.ok(customerService.findByUserRoleEquals(userRole));
+    }
+
     @GetMapping(value = "area/{areaCode}")
     public ResponseEntity<Object>getCustomerByAreaCode(@PathVariable("areaCode") String areaCode){
         return ResponseEntity.ok().body(customerService.findAllByAreaCodeEquals(areaCode));
     }
 
-//    @GetMapping(value = "/area/{areaCode}")
-//    public ResponseEntity<Object> getAllByAreaCode(@RequestParam(name = "firstName", defaultValue = "") String firstName,
-//                                               @RequestParam(name = "lastName", defaultValue = "") String lastName,
-//                                                @RequestParam(name = "areaCode", defaultValue = "") String areaCode){
-//        return ResponseEntity.ok(customerService.getCustomersByAreaCode(firstName, lastName, areaCode));
-//    }
+    @GetMapping(value = "guild/{guild}")
+    public ResponseEntity<Object>getCustomersByGuild(@PathVariable("guild") String guild){
+        return ResponseEntity.ok(customerService.findByGuildEquals(guild));
+    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) {
@@ -60,12 +65,9 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable("id") long id) {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }

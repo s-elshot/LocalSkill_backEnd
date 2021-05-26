@@ -5,7 +5,7 @@ import nl.graduateproject.localSkill.model.Customer;
 import nl.graduateproject.localSkill.model.Item;
 //import nl.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
-import nl.graduateproject.localSkill.model.TestKlasse;
+import nl.graduateproject.localSkill.model.ItemType;
 import nl.graduateproject.localSkill.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,39 +54,9 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setCount(item.getCount());
         existingItem.setItemType(item.getItemType());
         existingItem.setCustomer(item.getCustomer());
-        existingItem.setImages(item.getImages());
+//        existingItem.setImages(item.getImages());
         existingItem.setInvoices(item.getInvoices());
         itemRepository.save(existingItem);
-    }
-
-
-    @Override
-    public void partialUpdateItem(long id, Map<String, String> fields) {
-
-        if (!itemRepository.existsById(id)) throw new RecordNotFoundException();
-        Item item = itemRepository.findById(id).get();
-        for (String field : fields.keySet()) {
-            switch (field.toLowerCase()) {
-                case "name":
-                    item.setName(fields.get(field));
-                    break;
-                case "price":
-                    item.setPrice((Double.parseDouble(fields.get(field))));
-                    break;
-                case "description":
-                    item.setDescription(fields.get(field));
-                    break;
-//                case "number":
-//                    item.setNumber((int) fields.get(field));
-//                    break;
-//                case "count":
-//                    item.setCount((int) fields.get(field));
-//                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + field.toLowerCase());
-            }
-        }
-        itemRepository.save(item);
     }
 
     @Override
@@ -96,21 +66,21 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
-//    @Override
-//    public List<Customer> findItemsByCustomerAreaCode(String areaCode) {
-//        return itemRepository.findItemsByCustomerAreaCode(areaCode);
-//    }
-
-    //    @Override
-//    public Collection<Item> getItemsByName(String name) {
-//        return itemRepository.findAllByNameStartsWith(name);
-//    }
-
-//    @Override
-//    public boolean itemExistsById(long id) {
-//        return itemRepository.existsById(id);
-//    }
 
 
 
+    @Override
+    public Collection<Item> findItemByNameContains(String name) {
+        return itemRepository.findItemByNameContains(name);
+    }
+
+    @Override
+    public Collection<Item> getItemsByCustomer(Customer customer) {
+        return itemRepository.getItemsByCustomer(customer);
+    }
+
+    @Override
+    public Collection<Item> getItemByItemType(ItemType itemType) {
+        return itemRepository.getItemByItemType(itemType);
+    }
 }

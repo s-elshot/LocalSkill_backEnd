@@ -82,7 +82,6 @@ public class Customer {
     )
     @JsonIgnoreProperties("customer")
     private List<Invoice>invoices = new ArrayList<>();
-
 }
 
 

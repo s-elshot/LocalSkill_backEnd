@@ -2,6 +2,7 @@ package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.model.Customer;
 import nl.graduateproject.localSkill.model.Item;
+import nl.graduateproject.localSkill.model.ItemType;
 import nl.graduateproject.localSkill.model.TestKlasse;
 
 
@@ -23,22 +24,11 @@ public interface ItemService {
 
     public void deleteItem(long id);;
 
+//    public  void partialUpdateItem(long id, Map<String, String> fields);
 
+    public Collection<Item> findItemByNameContains(String name);
 
-    public  void partialUpdateItem(long id, Map<String, String> fields);
+    public Collection<Item> getItemsByCustomer(Customer customer);
 
-//    public abstract Collection<Item> getItemsByAreaCode(String areaCode);
-
-//    List<Customer> findItemsByCustomerAreaCode(String areaCode);
-
-//    List<Customer> findItemsByCustomerAreaCode(String areaCode);
-
-//    public Collection<Item> getItemsByName(String name);
-
-//    public boolean itemExistsById(long id);
-
-
-
-
-
+    public Collection<Item> getItemByItemType(ItemType itemType);
 }

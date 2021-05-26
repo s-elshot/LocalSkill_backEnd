@@ -18,12 +18,6 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-
-//    @PostMapping(value = "")
-//    public ResponseEntity<Object> saveImage() {
-//        return null;
-//    }
-
     @GetMapping(value = "")
     public ResponseEntity<Object> getImages() {
         return ResponseEntity.ok().body(imageService.getImages());

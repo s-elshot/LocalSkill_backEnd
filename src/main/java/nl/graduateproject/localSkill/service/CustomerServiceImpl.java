@@ -2,6 +2,7 @@ package nl.graduateproject.localSkill.service;
 
 
 import nl.graduateproject.localSkill.model.Customer;
+import nl.graduateproject.localSkill.model.CustomerType;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,21 +39,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Collection<Customer> findAllByAreaCode(String areaCode){
-        return customerRepository.findAllByAreaCode(areaCode);
-    }
-
-    @Override
-    public Collection<Customer> getCustomersByLastName(String lastName) {
-        return customerRepository.findAllByLastName(lastName);
-    }
-
-    @Override
-    public Collection<Customer> getCustomersByAreaCode(String firstName, String lastName, String areaCode) {
-        return customerRepository.findAllByAreaCode(areaCode);
-    }
-
-    @Override
     public long createCustomer(Customer customer) {
         Customer newCustomer = customerRepository.save(customer);
         return newCustomer.getId();
@@ -81,6 +67,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAllByAreaCodeEquals(String areaCode) {
         return (List<Customer>) customerRepository.findAllByAreaCode(areaCode);
+    }
+
+    @Override
+    public Collection<Customer> findByUserRoleEquals (CustomerType userRole){
+     return (List<Customer>) customerRepository.findByUserRoleEquals(userRole);
+    }
+
+    @Override
+    public Collection<Customer> findByGuildEquals(String guild) {
+        return (List<Customer>) customerRepository.findByGuildEquals(guild);
     }
 
     @Override

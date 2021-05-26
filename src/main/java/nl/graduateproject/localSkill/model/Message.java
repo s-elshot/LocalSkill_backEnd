@@ -33,5 +33,4 @@ public class Message {
 
     @Column
     private LocalDate date;
-
 }

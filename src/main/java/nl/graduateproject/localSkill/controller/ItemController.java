@@ -1,6 +1,8 @@
 package nl.graduateproject.localSkill.controller;
 
+import nl.graduateproject.localSkill.model.Customer;
 import nl.graduateproject.localSkill.model.Item;
+import nl.graduateproject.localSkill.model.ItemType;
 import nl.graduateproject.localSkill.model.TestKlasse;
 import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.Map;
 
 
@@ -32,10 +35,20 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.getItemById(id));
     }
 
-//    @GetMapping(value = "/{areaCode}")
-//    public ResponseEntity<Object> getItemsByArea(@PathVariable("areaCode") String areaCode){
-//        return ResponseEntity.ok(itemService.findItemsByCustomerAreaCode(areaCode));
-//    }
+    @GetMapping(value = "name/{name}")
+    public ResponseEntity<Object> getItemsByName(@PathVariable("name") String name) {
+        return ResponseEntity.ok().body(itemService.findItemByNameContains(name));
+    }
+
+    @GetMapping(value = "itemType/{itemType}")
+    public ResponseEntity<Object> getItemsByItemType(@PathVariable("itemType") ItemType itemType) {
+    return ResponseEntity.ok(itemService.getItemByItemType(itemType));
+    }
+
+    @GetMapping(value = "customer/{customer}")
+    public ResponseEntity<Object> getItemsByCustomer(@PathVariable("customer") Customer customer){
+        return ResponseEntity.ok(itemService.getItemsByCustomer(customer));
+    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createItem(@RequestBody Item item) {
@@ -50,13 +63,6 @@ public class ItemController {
         itemService.updateItem(id, item);
         return ResponseEntity.noContent().build();
     }
-
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<Object> partialUpdateItem(@PathVariable("id") long id, @RequestBody Map<String, String> fields) {
-        itemService.partialUpdateItem(id, fields);
-        return ResponseEntity.noContent().build();
-    }
-
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteItem(@PathVariable("id") long id) {

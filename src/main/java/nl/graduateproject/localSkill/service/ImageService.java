@@ -1,7 +1,10 @@
 package nl.graduateproject.localSkill.service;
 
 
+import nl.graduateproject.localSkill.model.Customer;
 import nl.graduateproject.localSkill.model.Image;
+import nl.graduateproject.localSkill.model.Item;
+import nl.graduateproject.localSkill.model.ItemType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
@@ -22,5 +25,7 @@ public interface ImageService {
     public void updateImage(long id, Image image);
 
     public boolean imageExistsById(long id);
+
+    public void uploadFile(MultipartFile file);
 
 }

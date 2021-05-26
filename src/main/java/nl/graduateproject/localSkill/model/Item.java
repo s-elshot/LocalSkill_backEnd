@@ -3,8 +3,6 @@ package nl.graduateproject.localSkill.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ public class Item {
     @Column
     private String description;
 
-
     @Column
     private int number;
 
@@ -61,5 +58,4 @@ public class Item {
 
     @ManyToMany(mappedBy ="invoiceItems" )
     private List<Invoice> invoices = new ArrayList<>();
-
 }

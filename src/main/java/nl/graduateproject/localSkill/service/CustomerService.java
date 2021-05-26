@@ -1,6 +1,7 @@
 package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.model.Customer;
+import nl.graduateproject.localSkill.model.CustomerType;
 import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
@@ -10,13 +11,7 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    public Collection<Customer> getCustomersByLastName(String lastName);
-
     public Collection<Customer> getAllCustomers();
-
-    public Collection<Customer> getCustomersByAreaCode(String firstName, String lastName, String areaCode);
-
-    public Collection<Customer> findAllByAreaCode(String areaCode);
 
     public long createCustomer(Customer customer);
 
@@ -24,9 +19,11 @@ public interface CustomerService {
 
     public  void deleteCustomer(long id);
 
+    public Collection<Customer> findByUserRoleEquals(CustomerType userRole);
+
     public List<Customer> findAllByAreaCodeEquals (String areaCode);
 
-//    public abstract Collection<Customer> getCustomers(String name, String lastName);
+    public Collection<Customer> findByGuildEquals(String guild);
 
     public Optional<Customer> getCustomerById(long id);
 

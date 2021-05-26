@@ -5,10 +5,16 @@ import nl.graduateproject.localSkill.model.Image;
 import nl.graduateproject.localSkill.model.TestKlasse;
 import nl.graduateproject.localSkill.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -59,27 +65,23 @@ public class ImageServiceImpl implements ImageService {
 
     }
 
-//    @Override
-//    public void updateTestKlasse(long id, TestKlasse testKlasse) {
-//        if (!testKlasseRepository.existsById(id)) throw new RecordNotFoundException();
-//        TestKlasse oldTestKlasse = testKlasseRepository.findById(id).get();
-//        oldTestKlasse.setName(testKlasse.getName());
-//        oldTestKlasse.setType(testKlasse.getType());
-//        oldTestKlasse.setDescription(testKlasse.getDescription());
-//        oldTestKlasse.setAreaCode(testKlasse.getAreaCode());
-//        testKlasseRepository.save(oldTestKlasse);
-//    }
-
-//    public Image saveImage(MultipartFile file){
-//        String name = file.getOriginalFilename();
+    @Override
+    public void uploadFile(MultipartFile file) {
+//
+//        String uploadDir;
+//
 //        try {
-//            Image image = new Image(name, file.getContentType(),file.getBytes());
-//            return imageRepository.save(image);
-//        } catch (Exception e){
+//            Path copyLocation = Paths
+//                    .get(uploadDir + File.separator + org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename()));
+//            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+//        } catch (Exception e) {
 //            e.printStackTrace();
+//            throw new FileStorageException("Could not store file " + file.getOriginalFilename()
+//                    + ". Please try again!");
 //        }
-//        return  null;
-//    }
+    }
+
+
 
 
     @Override
