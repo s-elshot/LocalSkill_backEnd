@@ -16,23 +16,6 @@ public class InvoiceServiceImpl implements InvoiceService{
     private InvoiceRepository invoiceRepository;
 
     @Override
-    public long createInvoice(Invoice invoice) {
-        Invoice newInvoice = invoiceRepository.save(invoice);
-        return newInvoice.getId();
-    }
-
-    @Override
-    public void updateInvoice(long id, Invoice invoice) {
-
-    }
-
-    @Override
-    public void deleteInvoice(long id) {
-        if (!invoiceRepository.existsById(id)) throw new RecordNotFoundException();
-        invoiceRepository.deleteById(id);
-    }
-
-    @Override
     public Collection<Invoice> getInvoices() {
         return invoiceRepository.findAll();
     }
@@ -41,6 +24,28 @@ public class InvoiceServiceImpl implements InvoiceService{
     public Optional<Invoice> getInvoiceById(long id) {
         if (!invoiceRepository.existsById(id)) throw new RecordNotFoundException();
         return invoiceRepository.findById(id);
+    }
+
+    @Override
+    public void updateInvoice(long id, Invoice invoice) {
+        if (!invoiceRepository.existsById(id)) throw new RecordNotFoundException();
+        Invoice existingInvoice = invoiceRepository.findById(id).get();
+        existingInvoice.setDescription(invoice.getDescription());
+        existingInvoice.setCustomer(invoice.getCustomer());
+        existingInvoice.setInvoiceItems(invoice.getInvoiceItems());
+        invoiceRepository.save(existingInvoice);
+    }
+
+    @Override
+    public long createInvoice(Invoice invoice) {
+        Invoice newInvoice = invoiceRepository.save(invoice);
+        return newInvoice.getId();
+    }
+
+    @Override
+    public void deleteInvoice(long id) {
+        if (!invoiceRepository.existsById(id)) throw new RecordNotFoundException();
+        invoiceRepository.deleteById(id);
     }
 
     @Override

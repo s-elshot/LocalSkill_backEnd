@@ -32,12 +32,17 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerService.getCustomerById(id));
     }
 
-    @GetMapping(value = "/{areaCode}")
-    public ResponseEntity<Object> getAllByAreaCode(@RequestParam(name = "firstName", defaultValue = "") String firstName,
-                                               @RequestParam(name = "lastName", defaultValue = "") String lastName,
-                                                @RequestParam(name = "areaCode", defaultValue = "") String areaCode){
-        return ResponseEntity.ok(customerService.getCustomersByAreaCode(firstName, lastName, areaCode));
+    @GetMapping(value = "area/{areaCode}")
+    public ResponseEntity<Object>getCustomerByAreaCode(@PathVariable("areaCode") String areaCode){
+        return ResponseEntity.ok().body(customerService.findAllByAreaCodeEquals(areaCode));
     }
+
+//    @GetMapping(value = "/area/{areaCode}")
+//    public ResponseEntity<Object> getAllByAreaCode(@RequestParam(name = "firstName", defaultValue = "") String firstName,
+//                                               @RequestParam(name = "lastName", defaultValue = "") String lastName,
+//                                                @RequestParam(name = "areaCode", defaultValue = "") String areaCode){
+//        return ResponseEntity.ok(customerService.getCustomersByAreaCode(firstName, lastName, areaCode));
+//    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) {
@@ -61,5 +66,6 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }

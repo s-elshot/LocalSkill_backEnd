@@ -2,13 +2,12 @@ package nl.graduateproject.localSkill.service;
 
 
 import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.Image;
-import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -41,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Collection<Customer> findAllByAreaCode(String areaCode){
         return customerRepository.findAllByAreaCode(areaCode);
-    };
+    }
 
     @Override
     public Collection<Customer> getCustomersByLastName(String lastName) {
@@ -79,10 +78,15 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(id);
     }
 
-
+    @Override
+    public List<Customer> findAllByAreaCodeEquals(String areaCode) {
+        return (List<Customer>) customerRepository.findAllByAreaCode(areaCode);
+    }
 
     @Override
     public boolean customerExistsById(long id) {
         return customerRepository.existsById(id);
     }
+
+
 }

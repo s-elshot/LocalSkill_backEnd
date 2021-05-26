@@ -7,16 +7,16 @@ import java.util.Optional;
 
 public interface InvoiceService {
 
-    public abstract long createInvoice(Invoice invoice);
+    public long createInvoice(Invoice invoice);
 
-    public abstract void updateInvoice(long id, Invoice invoice);
+    public void updateInvoice(long id, Invoice invoice);
 
-    public abstract void deleteInvoice(long id);
+    public void deleteInvoice(long id);
 
-    public abstract Collection<Invoice> getInvoices();
+    public Collection<Invoice> getInvoices();
 
-    public abstract Optional<Invoice> getInvoiceById(long id);
+    public Optional<Invoice> getInvoiceById(long id);
 
-    public abstract boolean invoiceExistsById(long id);
+    public boolean invoiceExistsById(long id);
 
 }

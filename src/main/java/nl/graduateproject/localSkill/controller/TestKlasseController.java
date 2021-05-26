@@ -1,9 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.TestKlasse;
-import nl.graduateproject.localSkill.service.ImageService;
 import nl.graduateproject.localSkill.service.TestKlasseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +28,16 @@ public class TestKlasseController {
         return ResponseEntity.ok().body(testKlasseService.getTestklassenById(id));
     }
 
+    @GetMapping(value = "description/{description}")
+    public ResponseEntity<Object> getTestKlasseByDescription(@PathVariable("description") String description) {
+        return ResponseEntity.ok().body(testKlasseService.findByDescriptionEquals(description));
+    }
+
+    @GetMapping(value = "areacode/{areaCode}")
+    public ResponseEntity<Object>getTestKlasseByAreaCode(@PathVariable("areaCode") String areaCode){
+        return ResponseEntity.ok().body(testKlasseService.findAllByAreaCodeEquals(areaCode));
+    }
+
     @PostMapping(value = "")
     public ResponseEntity<Object> createTestKlasse(@RequestBody TestKlasse testKlasse) {
         long newId = testKlasseService.createTestKlasse(testKlasse);
@@ -46,7 +53,7 @@ public class TestKlasseController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> deleteImage(@PathVariable("id") long id) {
+    public ResponseEntity<Object> deleteTestKlasse(@PathVariable("id") long id) {
         testKlasseService.deleteTestKlasse(id);
         return ResponseEntity.noContent().build();
     }

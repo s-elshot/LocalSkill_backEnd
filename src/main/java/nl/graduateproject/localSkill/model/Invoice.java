@@ -23,9 +23,11 @@ public class Invoice {
     @Column
     private String description;
 
+    // nullable of verplicht in constructor?
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
 
     @ManyToMany
     @JoinTable(

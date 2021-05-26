@@ -28,4 +28,7 @@ public class TestKlasse {
 
     @Column
     private String description;
+
+    @Column
+    private String areaCode;
 }

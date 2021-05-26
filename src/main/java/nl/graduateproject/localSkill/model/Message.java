@@ -23,9 +23,11 @@ public class Message {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    // nullable of verplicht in constructor?
     @Column
     private String title;
 
+    // nullable of verplicht in constructor?
     @Column
     private String bodyText;
 

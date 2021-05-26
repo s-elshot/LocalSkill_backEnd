@@ -37,6 +37,12 @@ public class MessageController {
         return ResponseEntity.created(location).build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateMessage(@PathVariable("id") long id, @RequestBody Message message) {
+        messageService.updateMessage(id, message);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteMessage(@PathVariable("id") long id) {
         messageService.deleteMessage(id);

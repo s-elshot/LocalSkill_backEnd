@@ -1,4 +1,5 @@
 package nl.graduateproject.localSkill.service;
+
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.Item;
 import nl.graduateproject.localSkill.model.TestKlasse;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.Column;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TestKlasseServiceImpl implements TestKlasseService{
+public class TestKlasseServiceImpl implements TestKlasseService {
 
     @Autowired
     private TestKlasseRepository testKlasseRepository;
@@ -46,23 +48,24 @@ public class TestKlasseServiceImpl implements TestKlasseService{
     }
 
     @Override
+    public List<TestKlasse> findByDescriptionEquals(String description) {
+        return testKlasseRepository.findByDescriptionEquals(description);
+    }
+
+    @Override
+    public List<TestKlasse> findAllByAreaCodeEquals(String areaCode){
+        return testKlasseRepository.findAllByAreaCodeEquals(areaCode);
+    }
+
+    @Override
     public void updateTestKlasse(long id, TestKlasse testKlasse) {
-            if (!testKlasseRepository.existsById(id)) throw new RecordNotFoundException();
-            TestKlasse newTestKlasse = testKlasseRepository.findById(id).get();
-            newTestKlasse.setName(testKlasse.getName());
-            newTestKlasse.setType(testKlasse.getType());
-            newTestKlasse.setDescription(testKlasse.getDescription());
-            testKlasseRepository.save(newTestKlasse);
-        }
+        if (!testKlasseRepository.existsById(id)) throw new RecordNotFoundException();
+        TestKlasse oldTestKlasse = testKlasseRepository.findById(id).get();
+        oldTestKlasse.setName(testKlasse.getName());
+        oldTestKlasse.setType(testKlasse.getType());
+        oldTestKlasse.setDescription(testKlasse.getDescription());
+        oldTestKlasse.setAreaCode(testKlasse.getAreaCode());
+        testKlasseRepository.save(oldTestKlasse);
+    }
 }
 
-//    private String name;
-//
-//    @Column
-//    private String type;
-//
-//    @Column
-//    private Long size;
-//
-//    @Column
-//    private String description;

@@ -1,18 +1,21 @@
 package nl.graduateproject.localSkill.service;
 import nl.graduateproject.localSkill.model.Message;
+import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
 import java.util.Optional;
 
 public interface MessageService {
 
-    public abstract long createMessage(Message message);
+    public long createMessage(Message message);
 
-    public abstract void deleteMessage(long id);
+    public void deleteMessage(long id);
 
-    public abstract Collection<Message> getMessages();
+    public Collection<Message> getMessages();
 
-    public abstract Optional<Message> getMessageById(long id);
+    public Optional<Message> getMessageById(long id);
 
-    public abstract boolean messageExistsById(long id);
+    public void updateMessage(long id, Message message);
+
+    public boolean messageExistsById(long id);
 }

@@ -11,14 +11,16 @@ import java.util.Optional;
 public interface ImageService {
 
 //    public abstract Image saveImage(MultipartFile file);
-    public abstract long createImage(Image image);
+    public long createImage(Image image);
 
-    public abstract void deleteImage(long id);
+    public void deleteImage(long id);
 
-    public abstract Collection<Image> getImages();
+    public Collection<Image> getImages();
 
-    public abstract Optional<Image> getItemById(long id);
+    public Optional<Image> getImageById(long id);
 
-    public abstract boolean imageExistsById(long id);
+    public void updateImage(long id, Image image);
+
+    public boolean imageExistsById(long id);
 
 }

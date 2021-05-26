@@ -27,13 +27,16 @@ public class Image {
     @Column
     private Long size;
 
+
     @Column
     private String description;
 
+    // nullable of verplicht in constructor?
     @Lob
     @Column
     private byte[] content;
 
+    // nullable of verplicht in constructor?
     @ManyToOne
     @JoinColumn(name = "items_id")
     private Item item;

@@ -21,16 +21,19 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    // nullable of verplicht in constructor?
     @Column
     private String name;
 
+    // nullable of verplicht in constructor?
     @Column
     private double price;
 
     @Column
     private String description;
+
 
     @Column
     private int number;
@@ -39,9 +42,11 @@ public class Item {
 //            (nullable = false)
     private int count;
 
+    // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
+    // nullable of verplicht in constructor?
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

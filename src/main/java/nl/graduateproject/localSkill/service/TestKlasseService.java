@@ -5,21 +5,27 @@ import nl.graduateproject.localSkill.model.Item;
 import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface TestKlasseService {
 
-    public abstract void deleteTestKlasse(long id);
-
-    public abstract Collection<TestKlasse> getTestKlassen();
-
-    public abstract Optional<TestKlasse> getTestklassenById(long id);
-
-    public abstract boolean testKlasseExistsById(long id);
-
-    public abstract long createTestKlasse(TestKlasse testKlasse);
 
 
-    public abstract void updateTestKlasse(long id, TestKlasse testKlasse);
+    public Collection<TestKlasse> getTestKlassen();
+
+    public Optional<TestKlasse> getTestklassenById(long id);
+
+    public boolean testKlasseExistsById(long id);
+
+    public long createTestKlasse(TestKlasse testKlasse);
+
+    public void deleteTestKlasse(long id);
+
+    public List<TestKlasse> findByDescriptionEquals (String description);
+
+    public void updateTestKlasse(long id, TestKlasse testKlasse);
+
+    public List<TestKlasse> findAllByAreaCodeEquals(String areaCode);
 
 }

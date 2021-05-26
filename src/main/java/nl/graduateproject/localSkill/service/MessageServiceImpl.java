@@ -20,6 +20,23 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public Optional<Message> getMessageById(long id) {
+        if (!messageRepository.existsById(id)) throw new RecordNotFoundException();
+        return messageRepository.findById(id);
+    }
+
+    @Override
+    public void updateMessage(long id, Message message) {
+        if (!messageRepository.existsById(id)) throw new RecordNotFoundException();
+        Message existingMessage = messageRepository.findById(id).get();
+        existingMessage.setTitle(message.getTitle());
+        existingMessage.setBodyText(message.getBodyText());
+        existingMessage.setDate(message.getDate());
+        existingMessage.setCustomer(message.getCustomer());
+        messageRepository.save(existingMessage);
+    }
+
+    @Override
     public long createMessage(Message message) {
         Message newMessage = messageRepository.save(message);
         return newMessage.getId();
@@ -29,12 +46,6 @@ public class MessageServiceImpl implements MessageService {
     public void deleteMessage(long id) {
         if (!messageRepository.existsById(id)) throw new RecordNotFoundException();
         messageRepository.deleteById(id);
-    }
-
-    @Override
-    public Optional<Message> getMessageById(long id) {
-        if (!messageRepository.existsById(id)) throw new RecordNotFoundException();
-        return messageRepository.findById(id);
     }
 
     @Override
