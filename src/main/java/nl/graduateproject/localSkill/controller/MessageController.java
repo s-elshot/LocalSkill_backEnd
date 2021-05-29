@@ -29,7 +29,7 @@ public class MessageController {
         return ResponseEntity.ok().body(messageService.getMessageById(id));
     }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/")
     public ResponseEntity<Object> createMessage(@RequestBody Message message) {
         long newId = messageService.createMessage(message);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

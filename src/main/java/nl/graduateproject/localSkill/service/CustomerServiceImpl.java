@@ -1,8 +1,8 @@
 package nl.graduateproject.localSkill.service;
 
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.CustomerType;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerType;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

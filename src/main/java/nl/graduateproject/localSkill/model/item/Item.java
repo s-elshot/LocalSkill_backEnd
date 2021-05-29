@@ -1,8 +1,12 @@
-package nl.graduateproject.localSkill.model;
+package nl.graduateproject.localSkill.model.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.fileDB.FileDB;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -43,19 +47,27 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
-    // nullable of verplicht in constructor?
+
+    // compositional relationship ((child)can't exist without parent)
+    // aggregational relationship ((child)can exist without parent)
+
+
+    // compositional relationship ((child:item)can't exist without parent(customer))
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    // compositional relationship ((child: fileDB)can't exist without parent(item))
     @OneToMany(
             mappedBy ="item",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @JsonIgnoreProperties("item")
-    private List<Image> images  = new ArrayList<>();
+    private List<FileDB> fileDBs = new ArrayList<>();
 
+
+    // aggregational relationship ((child: invoice)can exist without parent(item))
     @ManyToMany(mappedBy ="invoiceItems" )
     private List<Invoice> invoices = new ArrayList<>();
 }

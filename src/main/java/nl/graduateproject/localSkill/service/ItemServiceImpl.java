@@ -1,18 +1,17 @@
 package nl.graduateproject.localSkill.service;//package com.graduateproject.localSkill.service;
 //
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.Item;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.item.Item;
 //import nl.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
-import nl.graduateproject.localSkill.model.ItemType;
+import nl.graduateproject.localSkill.model.item.ItemType;
 import nl.graduateproject.localSkill.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -54,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setCount(item.getCount());
         existingItem.setItemType(item.getItemType());
         existingItem.setCustomer(item.getCustomer());
-//        existingItem.setImages(item.getImages());
+        existingItem.setFileDBs(item.getFileDBs());
         existingItem.setInvoices(item.getInvoices());
         itemRepository.save(existingItem);
     }
@@ -83,4 +82,9 @@ public class ItemServiceImpl implements ItemService {
     public Collection<Item> getItemByItemType(ItemType itemType) {
         return itemRepository.getItemByItemType(itemType);
     }
+
+//    @Override
+//    public Collection<Item> findItemByItemTypeAndCustomer_AreaCode(String areaCode, ItemType itemType){
+//     return itemRepository.findItemByItemTypeAndCustomer_AreaCode(areaCode,itemType);
+//    }
 }

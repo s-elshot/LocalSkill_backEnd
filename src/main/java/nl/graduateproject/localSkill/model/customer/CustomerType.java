@@ -1,4 +1,4 @@
-package nl.graduateproject.localSkill.model;
+package nl.graduateproject.localSkill.model.customer;
 
 
 public enum CustomerType {

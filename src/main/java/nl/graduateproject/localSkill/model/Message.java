@@ -2,9 +2,11 @@ package nl.graduateproject.localSkill.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.customer.Customer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // aggregational relationship ((child)can exist without parent)
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -33,4 +36,9 @@ public class Message {
 
     @Column
     private LocalDate date;
+
+    // aggregational relationship ((child: message)can exist without parent(invoice))
+    @OneToOne
+    @JoinColumn(name = "invoice_id", referencedColumnName = "id")
+    private Invoice invoice;
 }

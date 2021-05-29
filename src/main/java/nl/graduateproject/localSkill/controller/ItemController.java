@@ -1,9 +1,8 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.Item;
-import nl.graduateproject.localSkill.model.ItemType;
-import nl.graduateproject.localSkill.model.TestKlasse;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.item.Item;
+import nl.graduateproject.localSkill.model.item.ItemType;
 import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Collection;
-import java.util.Map;
 
 
 @RestController
@@ -49,6 +46,14 @@ public class ItemController {
     public ResponseEntity<Object> getItemsByCustomer(@PathVariable("customer") Customer customer){
         return ResponseEntity.ok(itemService.getItemsByCustomer(customer));
     }
+
+//    @GetMapping(value = "area/{itemType}/{areaCode}")
+//    public ResponseEntity<Object> getItemsByCustomerAreaCode
+//            (@PathVariable("areaCode") String areaCode,
+//            @PathVariable("itemType") ItemType itemType)
+//    {
+//        return ResponseEntity.ok(itemService.findItemByItemTypeAndCustomer_AreaCode(areaCode,itemType));
+//    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createItem(@RequestBody Item item) {

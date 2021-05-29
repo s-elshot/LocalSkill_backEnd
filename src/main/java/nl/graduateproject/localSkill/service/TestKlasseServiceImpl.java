@@ -1,13 +1,10 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.Invoice;
-import nl.graduateproject.localSkill.model.Item;
 import nl.graduateproject.localSkill.model.TestKlasse;
 import nl.graduateproject.localSkill.repository.TestKlasseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Column;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;

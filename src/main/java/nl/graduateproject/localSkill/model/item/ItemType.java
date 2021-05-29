@@ -1,4 +1,4 @@
-package nl.graduateproject.localSkill.model;
+package nl.graduateproject.localSkill.model.item;
 
 public enum ItemType {
    // the fields of the enum 

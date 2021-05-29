@@ -1,6 +1,5 @@
 package nl.graduateproject.localSkill.service;
 import nl.graduateproject.localSkill.model.Message;
-import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
 import java.util.Optional;

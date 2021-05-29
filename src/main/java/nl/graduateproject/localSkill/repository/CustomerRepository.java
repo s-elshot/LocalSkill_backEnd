@@ -1,14 +1,11 @@
 package nl.graduateproject.localSkill.repository;
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.CustomerType;
-import nl.graduateproject.localSkill.model.TestKlasse;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {

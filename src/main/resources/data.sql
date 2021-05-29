@@ -107,16 +107,16 @@ insert into items(name, price, description, number,count, item_type, customer_id
 values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,51, 'SERVICE', '2');
 
 -- messages
-insert into messages(title, body_text,customer_id)
-values ('Did it Work?','A check of this relationship is modeled correctly',1);
+insert into messages(title, body_text,customer_id,invoice_id)
+values ('Did it Work?','A check of this relationship is modeled correctly',1,1);
 insert into messages(title, body_text,customer_id)
 values ('Yes it worked!','A confirmation of this relationship is modeled correctly',1);
 -- images
-insert into images(name,type,items_id)
-values ('Sneaker01','jpg','4');
-
---ORDERS
+-- insert into images(name,type,items_id)
+-- values ('Sneaker01','jpg','4');
 --
+-- --ORDERS
+-- --
 
 
 

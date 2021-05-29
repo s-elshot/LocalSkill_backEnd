@@ -1,8 +1,11 @@
-package nl.graduateproject.localSkill.model;
+package nl.graduateproject.localSkill.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.item.Item;
+import nl.graduateproject.localSkill.model.Message;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -53,11 +56,12 @@ public class Customer {
     @Column
     private String guild;
 
-
     // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private CustomerType userRole;
 
+
+    // compositional relationship ((child:item)can't exist without parent(Customer))
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
@@ -66,7 +70,7 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Item> items = new ArrayList<>();
 
-
+    // aggregational relationship ((child)can exist without parent)
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
@@ -75,6 +79,7 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Message>messages = new ArrayList<>();
 
+    // compositional relationship ((child:invoice)can't exist without parent(Customer))
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,

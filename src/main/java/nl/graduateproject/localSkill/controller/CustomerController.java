@@ -1,16 +1,14 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.CustomerType;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerType;
 import nl.graduateproject.localSkill.service.CustomerService;
-import nl.graduateproject.localSkill.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Optional;
 
 
 @RestController

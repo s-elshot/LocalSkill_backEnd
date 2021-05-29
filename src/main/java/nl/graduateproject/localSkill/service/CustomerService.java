@@ -1,8 +1,7 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.Customer;
-import nl.graduateproject.localSkill.model.CustomerType;
-import nl.graduateproject.localSkill.model.TestKlasse;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerType;
 
 import java.util.Collection;
 import java.util.List;

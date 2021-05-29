@@ -1,7 +1,5 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.Image;
-import nl.graduateproject.localSkill.model.Item;
 import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
