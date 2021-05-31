@@ -73,8 +73,9 @@ public class Customer {
     // aggregational relationship ((child)can exist without parent)
     @OneToMany(
             mappedBy = "customer",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
+//            ,
+//            orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
     private List<Message>messages = new ArrayList<>();
@@ -82,8 +83,9 @@ public class Customer {
     // compositional relationship ((child:invoice)can't exist without parent(Customer))
     @OneToMany(
             mappedBy = "customer",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
+//            ,
+//            orphanRemoval = true
     )
     @JsonIgnoreProperties("customer")
     private List<Invoice>invoices = new ArrayList<>();

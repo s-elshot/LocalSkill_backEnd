@@ -57,7 +57,7 @@ public class Item {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    // compositional relationship ((child: fileDB)can't exist without parent(item))
+//     compositional relationship ((child: fileDB)can't exist without parent(item))
     @OneToMany(
             mappedBy ="item",
             cascade = CascadeType.ALL,

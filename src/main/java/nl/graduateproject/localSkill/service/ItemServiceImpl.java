@@ -53,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setCount(item.getCount());
         existingItem.setItemType(item.getItemType());
         existingItem.setCustomer(item.getCustomer());
-        existingItem.setFileDBs(item.getFileDBs());
+//        existingItem.setFileDBs(item.getFileDBs());
         existingItem.setInvoices(item.getInvoices());
         itemRepository.save(existingItem);
     }

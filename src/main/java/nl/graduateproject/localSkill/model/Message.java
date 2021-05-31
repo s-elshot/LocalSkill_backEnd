@@ -21,10 +21,6 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // aggregational relationship ((child)can exist without parent)
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
 
     // nullable of verplicht in constructor?
     @Column
@@ -41,4 +37,9 @@ public class Message {
     @OneToOne
     @JoinColumn(name = "invoice_id", referencedColumnName = "id")
     private Invoice invoice;
+
+    // aggregational relationship ((child)can exist without parent)
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

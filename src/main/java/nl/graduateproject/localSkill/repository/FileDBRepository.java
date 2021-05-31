@@ -9,3 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface FileDBRepository extends JpaRepository<FileDB, String> {
 
 }
+
