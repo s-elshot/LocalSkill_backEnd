@@ -57,6 +57,11 @@ public class Customer {
     private String guild;
 
     // nullable of verplicht in constructor?
+    // CHECK USAGE IN REACT!!!!!!!!!!!
+    @Enumerated(EnumType.STRING)
+    private CustomerGuild customerGuild;
+
+    // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private CustomerType userRole;
 

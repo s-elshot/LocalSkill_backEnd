@@ -19,7 +19,6 @@ public class TestKlasseServiceImpl implements TestKlasseService {
     public void deleteTestKlasse(long id) {
         if (!testKlasseRepository.existsById(id)) throw new RecordNotFoundException();
         testKlasseRepository.deleteById(id);
-
     }
 
     @Override
@@ -44,25 +43,14 @@ public class TestKlasseServiceImpl implements TestKlasseService {
         return newTestKlasse.getId();
     }
 
-    @Override
-    public List<TestKlasse> findByDescriptionEquals(String description) {
-        return testKlasseRepository.findByDescriptionEquals(description);
-    }
 
-    @Override
-    public List<TestKlasse> findAllByAreaCodeEquals(String areaCode){
-        return testKlasseRepository.findAllByAreaCodeEquals(areaCode);
-    }
 
     @Override
     public void updateTestKlasse(long id, TestKlasse testKlasse) {
-        if (!testKlasseRepository.existsById(id)) throw new RecordNotFoundException();
-        TestKlasse oldTestKlasse = testKlasseRepository.findById(id).get();
-        oldTestKlasse.setName(testKlasse.getName());
-        oldTestKlasse.setType(testKlasse.getType());
-        oldTestKlasse.setDescription(testKlasse.getDescription());
-        oldTestKlasse.setAreaCode(testKlasse.getAreaCode());
-        testKlasseRepository.save(oldTestKlasse);
+
     }
+
+
+
 }
 

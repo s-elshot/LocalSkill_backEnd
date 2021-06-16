@@ -4,6 +4,7 @@ import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.model.item.ItemType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -20,5 +21,11 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Collection<Item> findItemByNameContains(String name);
 
-//    Collection<Item> findItemByItemTypeAndCustomer_AreaCode(String areaCode,ItemType itemType);
+//        @Query("SELECT m FROM Movie m WHERE m.title LIKE %:title%")
+//
+//    List<Movie> searchByTitleLike(@Param("title") String title);
+
+//    @Query("SELECT m FROM Movie m WHERE m.title LIKE %:title%")
+//
+//    List<Movie> searchByTitleLike(@Param("title") String title);
 }

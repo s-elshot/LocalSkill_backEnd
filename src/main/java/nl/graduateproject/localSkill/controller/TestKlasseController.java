@@ -28,15 +28,6 @@ public class TestKlasseController {
         return ResponseEntity.ok().body(testKlasseService.getTestklassenById(id));
     }
 
-    @GetMapping(value = "description/{description}")
-    public ResponseEntity<Object> getTestKlasseByDescription(@PathVariable("description") String description) {
-        return ResponseEntity.ok().body(testKlasseService.findByDescriptionEquals(description));
-    }
-
-    @GetMapping(value = "areacode/{areaCode}")
-    public ResponseEntity<Object>getTestKlasseByAreaCode(@PathVariable("areaCode") String areaCode){
-        return ResponseEntity.ok().body(testKlasseService.findAllByAreaCodeEquals(areaCode));
-    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createTestKlasse(@RequestBody TestKlasse testKlasse) {

@@ -47,14 +47,6 @@ public class ItemController {
         return ResponseEntity.ok(itemService.getItemsByCustomer(customer));
     }
 
-//    @GetMapping(value = "area/{itemType}/{areaCode}")
-//    public ResponseEntity<Object> getItemsByCustomerAreaCode
-//            (@PathVariable("areaCode") String areaCode,
-//            @PathVariable("itemType") ItemType itemType)
-//    {
-//        return ResponseEntity.ok(itemService.findItemByItemTypeAndCustomer_AreaCode(areaCode,itemType));
-//    }
-
     @PostMapping(value = "")
     public ResponseEntity<Object> createItem(@RequestBody Item item) {
         long newId = itemService.createItem(item);
@@ -74,7 +66,4 @@ public class ItemController {
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

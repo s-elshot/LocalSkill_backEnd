@@ -47,10 +47,8 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
-
     // compositional relationship ((child)can't exist without parent)
     // aggregational relationship ((child)can exist without parent)
-
 
     // compositional relationship ((child:item)can't exist without parent(customer))
     @ManyToOne
@@ -65,7 +63,6 @@ public class Item {
     )
     @JsonIgnoreProperties("item")
     private List<FileDB> fileDBs = new ArrayList<>();
-
 
     // aggregational relationship ((child: invoice)can exist without parent(item))
     @ManyToMany(mappedBy ="invoiceItems" )

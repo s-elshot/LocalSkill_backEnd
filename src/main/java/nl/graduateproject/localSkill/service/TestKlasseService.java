@@ -3,11 +3,9 @@ package nl.graduateproject.localSkill.service;
 import nl.graduateproject.localSkill.model.TestKlasse;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 public interface TestKlasseService {
-
 
 
     public Collection<TestKlasse> getTestKlassen();
@@ -20,10 +18,7 @@ public interface TestKlasseService {
 
     public void deleteTestKlasse(long id);
 
-    public List<TestKlasse> findByDescriptionEquals (String description);
-
     public void updateTestKlasse(long id, TestKlasse testKlasse);
 
-    public List<TestKlasse> findAllByAreaCodeEquals(String areaCode);
 
 }

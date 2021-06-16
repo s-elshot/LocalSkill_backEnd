@@ -21,7 +21,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-
     @GetMapping(value = "")
     public ResponseEntity<Object> getCustomers() {
         return ResponseEntity.ok().body(customerService.getAllCustomers());
@@ -33,17 +32,17 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/role/{userRole}")
-    public ResponseEntity<Object> getUserByRole(@PathVariable("userRole") CustomerType userRole){
+    public ResponseEntity<Object> getUserByRole(@PathVariable("userRole") CustomerType userRole) {
         return ResponseEntity.ok(customerService.findByUserRoleEquals(userRole));
     }
 
     @GetMapping(value = "area/{areaCode}")
-    public ResponseEntity<Object>getCustomerByAreaCode(@PathVariable("areaCode") String areaCode){
+    public ResponseEntity<Object> getCustomerByAreaCode(@PathVariable("areaCode") String areaCode) {
         return ResponseEntity.ok().body(customerService.findAllByAreaCodeEquals(areaCode));
     }
 
     @GetMapping(value = "guild/{guild}")
-    public ResponseEntity<Object>getCustomersByGuild(@PathVariable("guild") String guild){
+    public ResponseEntity<Object> getCustomersByGuild(@PathVariable("guild") String guild) {
         return ResponseEntity.ok(customerService.findByGuildEquals(guild));
     }
 

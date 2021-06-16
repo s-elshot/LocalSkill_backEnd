@@ -1,9 +1,14 @@
 package nl.graduateproject.localSkill.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.item.Item;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,17 +23,13 @@ public class TestKlasse {
     private Long id;
 
     @Column
-    private String name;
+    private Long amount;
 
-    @Column
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
-    @Column
-    private Long size;
-
-    @Column
-    private String description;
-
-    @Column
-    private String areaCode;
+    @ManyToOne
+    @JoinColumn(name = "invoice_id")
+    private Invoice invoice;
 }

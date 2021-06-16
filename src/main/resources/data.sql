@@ -6,8 +6,8 @@
 
 insert into customer(first_name, last_name, email_adress, area_code, user_role, enabled,  city)
 values ('Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','CUSTOMER',TRUE,'Beverwijk');
-insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild )
-values ('Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker');
+insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild, customer_guild )
+values ('Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker','HEALTHCARE');
 
 insert into invoice(description)
 values ( 'first test');
@@ -17,10 +17,13 @@ values ( 'first test');
 insert into invoice(customer_id ,description)
 values ( '2', 'second test - customer with items');
 
+insert into invoice(customer_id ,description)
+values ( '2', 'second test - customer with items');
+
 insert into customer(first_name, last_name, email_adress, area_code, enabled,user_role,  city)
 values ('Michel', 'Lalmohamed', 'mlalmohamed@gmail.com', '1946AL',TRUE,'CUSTOMER','Beverwijk');
-insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild )
-values ('Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker');
+insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild, customer_guild )
+values ('Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker', 'FOOD');
 
 insert into items(name, price, description, number,count, item_type)
 values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,1, 'SERVICE');
@@ -43,12 +46,24 @@ values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,1, '
 -- values ( '2');
 
 insert into invoice_items(invoice_id,items_id)
-values ( '1','1');
+values ( '3','1');
+
 
 insert into invoice_items(invoice_id,items_id)
-values ( '1','2');
+values ( '4','2');
+
+insert into invoice_items(invoice_id,items_id)
+values ( '3','2');
+
+-- insert into invoice_items(invoice_id,items_id)
+-- values ( '4','7');
 --
---
+-- insert into invoice_items(invoice_id,items_id)
+-- values ( '4','8');
+
+-- TESTKLASSE
+-- insert into test_klasse( id, invoice_id)
+-- values ( 1,6);
 
 
 --
