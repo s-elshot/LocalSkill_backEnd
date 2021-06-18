@@ -2,6 +2,7 @@ package nl.graduateproject.localSkill.service;
 
 
 import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -37,7 +37,7 @@ public class InvoiceController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateOrder(@PathVariable("id") long id, @RequestBody Invoice invoice) {
+    public ResponseEntity<Object> updateInvoice(@PathVariable("id") long id, @RequestBody Invoice invoice) {
         invoiceService.updateInvoice(id, invoice);
         return ResponseEntity.noContent().build();
     }

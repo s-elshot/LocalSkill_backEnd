@@ -8,6 +8,7 @@ import nl.graduateproject.localSkill.model.item.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -45,5 +46,11 @@ public class Invoice {
     @JsonIgnoreProperties("invoices")
     private List<Item> invoiceItems = new ArrayList<>();
 
-
+    @OneToMany(
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL
+    )
+    @JsonIgnoreProperties("invoice")
+    private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
+    //    itemsOnInvoices.add(Item);
 }

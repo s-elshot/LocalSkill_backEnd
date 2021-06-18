@@ -16,14 +16,14 @@ import java.util.List;
 // @DATA = LOMBOK = Generates getters and setters
 @Entity
 @Table
-public class TestKlasse {
+public class ItemsOnInvoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private Long amount;
+    private int amount;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

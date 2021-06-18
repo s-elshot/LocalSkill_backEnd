@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.ItemsOnInvoice;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.fileDB.FileDB;
 
@@ -64,7 +65,16 @@ public class Item {
     @JsonIgnoreProperties("item")
     private List<FileDB> fileDBs = new ArrayList<>();
 
-    // aggregational relationship ((child: invoice)can exist without parent(item))
+//     aggregational relationship ((child: invoice)can exist without parent(item))
     @ManyToMany(mappedBy ="invoiceItems" )
     private List<Invoice> invoices = new ArrayList<>();
+
+
+    @OneToMany(
+            mappedBy = "item",
+            cascade = CascadeType.ALL
+    )
+    @JsonIgnoreProperties("item")
+    private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
+//    itemsOnInvoices.add(Item);
 }
