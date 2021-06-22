@@ -4,7 +4,7 @@ import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.model.item.ItemType;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

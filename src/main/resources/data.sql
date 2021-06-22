@@ -4,9 +4,9 @@
 
 
 
-insert into customer(first_name, last_name, email_adress, area_code, user_role, enabled,  city)
+insert into customer(first_name, last_name, email, area_code, user_role, enabled,  city)
 values ('Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','CUSTOMER',TRUE,'Beverwijk');
-insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild, customer_guild )
+insert into customer(first_name, last_name, email, area_code, enabled, user_role, city, guild, customer_guild )
 values ('Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker','HEALTHCARE');
 
 insert into invoice(description)
@@ -20,9 +20,9 @@ values ( '2', 'second test - customer with items');
 insert into invoice(customer_id ,description)
 values ( '2', 'second test - customer with items');
 
-insert into customer(first_name, last_name, email_adress, area_code, enabled,user_role,  city)
+insert into customer(first_name, last_name, email, area_code, enabled,user_role,  city)
 values ('Michel', 'Lalmohamed', 'mlalmohamed@gmail.com', '1946AL',TRUE,'CUSTOMER','Beverwijk');
-insert into customer(first_name, last_name, email_adress, area_code, enabled, user_role, city, guild, customer_guild )
+insert into customer(first_name, last_name, email, area_code, enabled, user_role, city, guild, customer_guild )
 values ('Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL',TRUE, 'GUILDER', 'Beverwijk','Baker', 'FOOD');
 
 insert into items(name, price, description, number,count, item_type)

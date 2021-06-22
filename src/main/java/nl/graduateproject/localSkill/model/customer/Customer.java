@@ -33,7 +33,7 @@ public class Customer {
 
     @Column
 //            (nullable = false, unique = true)
-    private String emailAdress;
+    private String email;
 
     // nullable of verplicht in constructor?
     @Column
