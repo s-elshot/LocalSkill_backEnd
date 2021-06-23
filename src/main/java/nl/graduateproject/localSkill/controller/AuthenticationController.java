@@ -35,26 +35,26 @@ public class AuthenticationController {
         return ResponseEntity.ok().body(principal);
     }
 
-    @PostMapping(value = "/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-
-        String userName = authenticationRequest-.getUserName();
-        String password = authenticationRequest.getPassword();
-
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userName, password)
-            );
-        }
-        catch (BadCredentialsException ex) {
-            throw new Exception("Incorrect username or password", ex);
-        }
-
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-
-        final String jwt = jwtUtl.generateToken(userDetails);
-
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
-    }
+//    @PostMapping(value = "/authenticate")
+//    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+//
+//        String username = authenticationRequest.getUserName();
+//        String password = authenticationRequest.getPassword();
+//
+//        try {
+//            authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(username, password)
+//            );
+//        }
+//        catch (BadCredentialsException ex) {
+//            throw new Exception("Incorrect username or password", ex);
+//        }
+//
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+//
+//        final String jwt = jwtUtl.generateToken(userDetails);
+//
+//        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+//    }
 
 }

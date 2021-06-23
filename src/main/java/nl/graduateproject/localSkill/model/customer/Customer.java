@@ -44,7 +44,6 @@ public class Customer {
     @Column
     private String lastName;
 
-    @Id
     @Column
 //            (nullable = false, unique = true)
     private String email;
