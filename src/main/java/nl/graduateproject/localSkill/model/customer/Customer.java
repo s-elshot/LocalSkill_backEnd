@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.authority.Authority;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.model.Message;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +20,11 @@ import java.util.List;
 // @DATA = LOMBOK = Generates getters and setters
 @Entity
 @Table
+//        (uniqueConstraints = {
+//        @UniqueConstraint(columnNames = "userName"),
+//        @UniqueConstraint(columnNames = "email")
+//})
+
 public class Customer {
 
     @Id
@@ -28,9 +36,15 @@ public class Customer {
     private String firstName;
 
     // nullable of verplicht in constructor?
+
+
+//    @Column(unique = true)
+    private String userName;
+
     @Column
     private String lastName;
 
+    @Id
     @Column
 //            (nullable = false, unique = true)
     private String email;
@@ -56,6 +70,7 @@ public class Customer {
     @Column
     private String guild;
 
+
     // nullable of verplicht in constructor?
     // CHECK USAGE IN REACT!!!!!!!!!!!
     @Enumerated(EnumType.STRING)
@@ -64,6 +79,16 @@ public class Customer {
     // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private CustomerType userRole;
+
+    @OneToMany(
+            targetEntity = Authority.class,
+            mappedBy = "id",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER)
+    private Set<Authority> authorities = new HashSet<>();
+
+
 
 
     // compositional relationship ((child:item)can't exist without parent(Customer))
@@ -94,6 +119,7 @@ public class Customer {
     )
     @JsonIgnoreProperties("customer")
     private List<Invoice>invoices = new ArrayList<>();
+
 }
 
 

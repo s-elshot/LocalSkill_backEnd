@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
@@ -15,6 +16,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     public Collection<Customer> findByUserRoleEquals(CustomerType userRole);
 
     public Collection<Customer> findByGuildEquals(String guild);
+
+
+
 
     // handles or translates the sql/database requests
     // query - defines methods that can be used in the controller-class

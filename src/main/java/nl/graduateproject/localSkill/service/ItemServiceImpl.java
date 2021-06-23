@@ -1,9 +1,9 @@
 package nl.graduateproject.localSkill.service;//package com.graduateproject.localSkill.service;
 //
 
+import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.item.Item;
-//import nl.graduateproject.localSkill.model.exception.RecordNotFoundException;
 
 import nl.graduateproject.localSkill.model.item.ItemType;
 import nl.graduateproject.localSkill.repository.ItemRepository;

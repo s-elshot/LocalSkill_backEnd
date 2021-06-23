@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
+import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Message;
 import nl.graduateproject.localSkill.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,13 @@
 package nl.graduateproject.localSkill.service;
 
 
+import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.item.Item;
+import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
+import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
 import nl.graduateproject.localSkill.repository.InvoiceRepository;
+import nl.graduateproject.localSkill.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Autowired
     private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Override
     public Collection<Invoice> getInvoices() {
@@ -38,7 +45,17 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
-    public long createInvoice(Invoice invoice) {
+    public long createInvoice(InvoiceRequestDto invoiceDto) {
+        Invoice invoice = new Invoice();
+        invoice.setDescription(invoiceDto.getDescription());
+        //...
+
+        for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoices()) {
+            Item item = itemRepository.findById(itemDto.getId()).orElse(null);
+            invoice.getInvoiceItems().add(item);
+            item.getInvoices().add(invoice);
+        }
+
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }

@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
+import nl.graduateproject.localSkill.model.authority.Authority;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.customer.CustomerType;
 
@@ -18,8 +19,12 @@ public interface CustomerService {
     public  void deleteCustomer(long id);
     public Collection<Customer> getAllCustomers();
     public Optional<Customer> getCustomerById(long id);
+//    public Optional<Customer> loadCustomerByEmail(String email);
     public boolean customerExistsById(long id);
 
+    public abstract Set<Authority> getAuthorities(String userName);
+    public abstract void addAuthority(String userName, String authority);
+    public abstract void removeAuthority(String userName, String authority);
 
     public Collection<Customer> findByUserRoleEquals(CustomerType userRole);
     public List<Customer> findAllByAreaCodeEquals (String areaCode);
