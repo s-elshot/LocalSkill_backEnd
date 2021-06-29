@@ -3,6 +3,7 @@ package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.ItemsOnInvoice;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
@@ -22,6 +23,8 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Autowired
     private ItemRepository itemRepository;
+
+
 
     @Override
     public Collection<Invoice> getInvoices() {
@@ -48,14 +51,16 @@ public class InvoiceServiceImpl implements InvoiceService{
     public long createInvoice(InvoiceRequestDto invoiceDto) {
         Invoice invoice = new Invoice();
         invoice.setDescription(invoiceDto.getDescription());
-        //...
-
         for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoices()) {
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
-            invoice.getInvoiceItems().add(item);
-            item.getInvoices().add(invoice);
+            ItemsOnInvoice itemsOnInvoice = new ItemsOnInvoice();
+            //giwerkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
+            //itemsOnInvoice.setId(item.getId());
+            itemsOnInvoice.setItem(item);//Maar dit werkt wel!
+            itemsOnInvoice.setAmount(itemDto.getAmount());
+            invoice.getItemsOnInvoices().add(itemsOnInvoice);
+            itemsOnInvoice.setInvoice(invoice);
         }
-
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }
