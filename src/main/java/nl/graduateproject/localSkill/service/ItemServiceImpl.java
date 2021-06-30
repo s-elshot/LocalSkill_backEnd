@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setItemType(item.getItemType());
         existingItem.setCustomer(item.getCustomer());
 //        existingItem.setFileDBs(item.getFileDBs());
-        existingItem.setInvoices(item.getInvoices());
+//        existingItem.setInvoices(item.getInvoices());
         itemRepository.save(existingItem);
     }
 

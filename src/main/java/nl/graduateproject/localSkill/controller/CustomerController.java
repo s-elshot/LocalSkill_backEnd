@@ -1,6 +1,8 @@
 package nl.graduateproject.localSkill.controller;
 
+import nl.graduateproject.localSkill.exceptions.BadRequestException;
 import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerGuild;
 import nl.graduateproject.localSkill.model.customer.CustomerType;
 import nl.graduateproject.localSkill.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 
 @RestController
@@ -26,9 +29,9 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerService.getAllCustomers());
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> getCustomerById(@PathVariable("id") long id) {
-        return ResponseEntity.ok().body(customerService.getCustomerById(id));
+    @GetMapping(value = "/{username}")
+    public ResponseEntity<Object> getCustomerByUsername(@PathVariable("username") String username) {
+        return ResponseEntity.ok().body(customerService.getCustomerByUsername(username));
     }
 
     @GetMapping(value = "/role/{userRole}")
@@ -42,29 +45,47 @@ public class CustomerController {
     }
 
     @GetMapping(value = "guild/{guild}")
-    public ResponseEntity<Object> getCustomersByGuild(@PathVariable("guild") String guild) {
-        return ResponseEntity.ok(customerService.findByGuildEquals(guild));
+    public ResponseEntity<Object> getCustomersByGuild(@PathVariable("guild")CustomerGuild customerGuild) {
+        return ResponseEntity.ok(customerService.findByCustomerGuildEquals(customerGuild));
     }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) {
-        long newId = customerService.createCustomer(customer);
+        String newUsername = customerService.createCustomer(customer);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newId).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
+                .buildAndExpand(newUsername).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
-        customerService.updateCustomer(id, customer);
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<Object> updateCustomer(@PathVariable("username") String username, @RequestBody Customer customer) {
+        customerService.updateCustomer(username, customer);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable("id") long id) {
-        customerService.deleteCustomer(id);
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable("username")String username) {
+        customerService.deleteCustomer(username);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping(value = "/{username}/authorities")
+    public ResponseEntity<Object> addCustomerAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
+        try {
+            String authorityName = (String) fields.get("authority");
+            customerService.addAuthority(username, authorityName);
+            return ResponseEntity.noContent().build();
+        }
+        catch (Exception ex) {
+            throw new BadRequestException();
+        }
+    }
+
+    @DeleteMapping(value = "/{username}/authorities/{authority}")
+    public ResponseEntity<Object> deleteUserAuthority(@PathVariable("username") String username, @PathVariable("authority") String authority) {
+        customerService.removeAuthority(username, authority);
         return ResponseEntity.noContent().build();
     }
 }

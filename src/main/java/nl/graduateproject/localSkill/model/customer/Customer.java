@@ -16,30 +16,16 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-// @NoArgsConstructor: This adds a no-arguments constructor to the class.
-// @DATA = LOMBOK = Generates getters and setters
 @Entity
 @Table
-//        (uniqueConstraints = {
-//        @UniqueConstraint(columnNames = "userName"),
-//        @UniqueConstraint(columnNames = "email")
-//})
-
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    // nullable of verplicht in constructor?
     @Column
     private String firstName;
-
-    // nullable of verplicht in constructor?
-
-
-//    @Column(unique = true)
-    private String userName;
 
     @Column
     private String lastName;
@@ -48,7 +34,6 @@ public class Customer {
 //            (nullable = false, unique = true)
     private String email;
 
-    // nullable of verplicht in constructor?
     @Column
 //            (nullable = false)
     private String areaCode;
@@ -56,7 +41,7 @@ public class Customer {
     @Column
     private String city;
 
-    // nullable of verplicht in constructor?
+
     @Column
 //            (nullable = false)
     private String password;
@@ -67,30 +52,22 @@ public class Customer {
     private boolean enabled;
 
     @Column
-    private String guild;
+    private String apikey;
 
-
-    // nullable of verplicht in constructor?
-    // CHECK USAGE IN REACT!!!!!!!!!!!
     @Enumerated(EnumType.STRING)
     private CustomerGuild customerGuild;
 
-    // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private CustomerType userRole;
 
     @OneToMany(
             targetEntity = Authority.class,
-            mappedBy = "id",
+            mappedBy = "username",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
 
-
-
-
-    // compositional relationship ((child:item)can't exist without parent(Customer))
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
@@ -99,7 +76,8 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Item> items = new ArrayList<>();
 
-    // aggregational relationship ((child)can exist without parent)
+
+
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL
@@ -109,7 +87,6 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Message>messages = new ArrayList<>();
 
-    // compositional relationship ((child:invoice)can't exist without parent(Customer))
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL
@@ -118,6 +95,13 @@ public class Customer {
     )
     @JsonIgnoreProperties("customer")
     private List<Invoice>invoices = new ArrayList<>();
+
+    public void addAuthority(Authority authority) {
+        this.authorities.add(authority);
+    }
+    public void removeAuthority(Authority authority) {
+        this.authorities.remove(authority);
+    }
 
 }
 

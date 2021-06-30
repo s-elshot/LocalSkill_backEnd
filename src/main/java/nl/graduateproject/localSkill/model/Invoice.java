@@ -14,43 +14,37 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-// @NoArgsConstructor: This adds a no-arguments constructor to the class.
-// @DATA = LOMBOK = Generates getters and setters
 @Table
 public class Invoice {
 
     @Id
-    // used to be @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
     private String description;
 
-    // nullable of verplicht in constructor?
-    // compositional relationship ((child)can't exist without parent)
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "username")
     private Customer customer;
 
-    // aggregational relationship ((child)can exist without parent)
     @OneToOne
     private Message message;
 
-    @ManyToMany
-    @JoinTable(
-            name = "invoice_items",
-            joinColumns = @JoinColumn(name = "invoice_id"),
-            inverseJoinColumns = @JoinColumn(name = "items_id")
-    )
-    @JsonIgnoreProperties("invoices")
-    private List<Item> invoiceItems = new ArrayList<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "invoice_items",
+//            joinColumns = @JoinColumn(name = "invoice_id"),
+//            inverseJoinColumns = @JoinColumn(name = "items_id")
+//    )
+//    @JsonIgnoreProperties("invoices")
+//    private List<Item> invoiceItems = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "invoice",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
     @JsonIgnoreProperties("invoice")
     private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
-    //    itemsOnInvoices.add(Item);
 }

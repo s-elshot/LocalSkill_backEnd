@@ -3,10 +3,13 @@ package nl.graduateproject.localSkill.service;
 
 //import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
+import nl.graduateproject.localSkill.exceptions.UsernameNotFoundException;
 import nl.graduateproject.localSkill.model.authority.Authority;
 import nl.graduateproject.localSkill.model.customer.Customer;
+import nl.graduateproject.localSkill.model.customer.CustomerGuild;
 import nl.graduateproject.localSkill.model.customer.CustomerType;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
+import nl.graduateproject.localSkill.utils.RandomStringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +29,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-//    @Override
-//    public Collection<Customer> getCustomers(String firstName, String lastName) {
-//        return customerRepository.findAll();
-//    }
 
     @Override
     public Collection<Customer> getAllCustomers(){
@@ -37,31 +36,37 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> getCustomerById(long id) {
-        if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
-        return customerRepository.findById(id);
+    public Optional<Customer> getCustomerByUsername(String username) {
+        if (!customerRepository.existsById(username)) throw new RecordNotFoundException();
+        return customerRepository.findById(username);
     }
 
+
+
     @Override
-    public long createCustomer(Customer customer) {
+    public String createCustomer(Customer customer) {
+        String randomString = RandomStringGenerator.generateAlphaNumeric(20);
+        customer.setApikey(randomString);
+//        customer.setAuthorities("ROLE_USER");
         Customer newCustomer = customerRepository.save(customer);
-        return newCustomer.getId();
+        return newCustomer.getUsername();
     }
 
     @Override
-    public void updateCustomer(long id, Customer newCustomer) {
-        if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
-        Customer customer = customerRepository.findById(id).get();
+    public void updateCustomer(String username, Customer newCustomer) {
+        if (!customerRepository.existsById(username)) throw new RecordNotFoundException();
+        Customer customer = customerRepository.findById(username).get();
         customer.setFirstName(newCustomer.getFirstName());
         customer.setLastName(newCustomer.getLastName());
         customer.setEmail(newCustomer.getEmail());
         customer.setAreaCode(newCustomer.getAreaCode());
         customer.setCity(newCustomer.getCity());
         customer.setPassword(newCustomer.getPassword());
-        customer.setUserName(newCustomer.getUserName());
-        customer.setGuild(newCustomer.getGuild());
-//        customer.setCustomerGuild(newCustomer.getCustomerGuild());
-//        customer.setUserRole(newCustomer.getUserRole());
+        customer.setEnabled(newCustomer.isEnabled());
+        customer.setApikey(newCustomer.getApikey());
+        customer.setCustomerGuild(newCustomer.getCustomerGuild());
+        customer.setUserRole(newCustomer.getUserRole());
+        customer.setAuthorities(newCustomer.getAuthorities());
 //        customer.setItems(newCustomer.getItems());
 //        customer.setMessages(newCustomer.getMessages());
 //        customer.setInvoices(newCustomer.getInvoices());
@@ -70,9 +75,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void deleteCustomer(long id) {
-        if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
-        customerRepository.deleteById(id);
+    public void deleteCustomer(String username) {
+        if (!customerRepository.existsById(username)) throw new RecordNotFoundException();
+        customerRepository.deleteById(username);
     }
 
     @Override
@@ -80,30 +85,37 @@ public class CustomerServiceImpl implements CustomerService {
         return (List<Customer>) customerRepository.findAllByAreaCode(areaCode);
     }
 
+
+
     @Override
     public Collection<Customer> findByUserRoleEquals (CustomerType userRole){
      return (List<Customer>) customerRepository.findByUserRoleEquals(userRole);
     }
 
     @Override
-    public Collection<Customer> findByGuildEquals(String guild) {
-        return (List<Customer>) customerRepository.findByGuildEquals(guild);
+    public Collection<Customer> findByCustomerGuildEquals(CustomerGuild customerGuild) {
+        return (List<Customer>) customerRepository.findByCustomerGuildEquals(customerGuild);
     }
 
     @Override
-    public boolean customerExistsById(long id) {
-        return customerRepository.existsById(id);
+    public boolean customerExistsById(String username) {
+        return customerRepository.existsById(username);
     }
 
 
     @Override
-    public Set<Authority> getAuthorities(String userName) {
-        return null;
+    public Set<Authority> getAuthorities(String username) {
+        if (!customerRepository.existsById(username)) throw new UsernameNotFoundException(username);
+        Customer customer = customerRepository.findById(username).get();
+        return customer.getAuthorities();
     }
 
     @Override
-    public void addAuthority(String userName, String authority) {
-
+    public void addAuthority(String username, String authority) {
+        if (!customerRepository.existsById(username)) throw new UsernameNotFoundException(username);
+        Customer customer = customerRepository.findById(username).get();
+        customer.addAuthority(new Authority(username, authority));
+        customerRepository.save(customer);
     }
 
     @Override
@@ -112,27 +124,5 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-//    @Override
-//    public Set<Authority> getAuthorities(String userName) {
-//        if (!customerRepository.existsByUserName(userName)) throw new UsernameNotFoundException(userName);
-//        Customer customer = customerRepository.findById(userName).get();
-//        return user.getAuthorities();
-//    }
-//
-//    @Override
-//    public void addAuthority(String userName, String authority) {
-//        if (!customerRepository.existsByUserName(userName)) throw new UsernameNotFoundException(userName);
-//        Customer customer = customerRepository.findById(userName).get();
-//        customer.addAuthority(new Authority(userName, authority));
-//        customerRepository.save(customer);
-//    }
-//
-//    @Override
-//    public void removeAuthority(String userName, String authority) {
-//        if (!customerRepository.existsById(userName)) throw new UsernameNotFoundException(userName);
-//        Customer customer = customerRepository.findById(userName).get();
-//        Authority authorityToRemove = customer.getAuthorities().stream().filter((a) -> a.getAuthority().equalsIgnoreCase(authority)).findAny().get();
-//        customer.removeAuthority(authorityToRemove);
-//        customerRepository.save(customer);
-//    }
+
 }

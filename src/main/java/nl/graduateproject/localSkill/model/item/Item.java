@@ -15,9 +15,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-// @NoArgsConstructor: This adds a no-arguments constructor to the class.
 @Data
-// @DATA = LOMBOK = Generates getters and setters
 @Table
         (name = "items")
 public class Item {
@@ -26,11 +24,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // nullable of verplicht in constructor?
     @Column
     private String name;
 
-    // nullable of verplicht in constructor?
     @Column
     private double price;
 
@@ -44,19 +40,13 @@ public class Item {
 //            (nullable = false)
     private int count;
 
-    // nullable of verplicht in constructor?
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
-    // compositional relationship ((child)can't exist without parent)
-    // aggregational relationship ((child)can exist without parent)
-
-    // compositional relationship ((child:item)can't exist without parent(customer))
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "username")
     private Customer customer;
 
-//     compositional relationship ((child: fileDB)can't exist without parent(item))
     @OneToMany(
             mappedBy ="item",
             cascade = CascadeType.ALL,
@@ -65,16 +55,13 @@ public class Item {
     @JsonIgnoreProperties("item")
     private List<FileDB> fileDBs = new ArrayList<>();
 
-//     aggregational relationship ((child: invoice)can exist without parent(item))
-    @ManyToMany(mappedBy ="invoiceItems" )
-    private List<Invoice> invoices = new ArrayList<>();
-
-
+//    @ManyToMany(mappedBy ="invoiceItems" )
+//    private List<Invoice> invoices = new ArrayList<>();
+//
     @OneToMany(
             mappedBy = "item",
             cascade = CascadeType.ALL
     )
     @JsonIgnoreProperties("item")
     private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
-//    itemsOnInvoices.add(Item);
 }

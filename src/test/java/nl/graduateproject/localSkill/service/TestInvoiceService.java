@@ -18,7 +18,7 @@ public class TestInvoiceService {
     @Test
     void test_createInvoice(){
         InvoiceRequestDto invoiceDto = new InvoiceRequestDto();
-        invoiceDto.setCustomerName("user1");
+//        invoiceDto.setCustomer("Stephan");
         invoiceDto.setDescription("testBvS1");
         ItemsOnInvoice itemsOnInvoice = new ItemsOnInvoice();
 

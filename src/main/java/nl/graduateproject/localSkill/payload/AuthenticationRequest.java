@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequest {
 
     // kan dit ondanks dat er in authority iets anders is gedefineerd?
-    private String email;
+    private String username;
     private String password;
 
 }

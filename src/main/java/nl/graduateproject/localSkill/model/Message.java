@@ -40,7 +40,7 @@ public class Message {
 
     // aggregational relationship ((child)can exist without parent)
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "username")
     private Customer customer;
 
 

@@ -4,9 +4,11 @@ package nl.graduateproject.localSkill.service;
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.ItemsOnInvoice;
+import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
+import nl.graduateproject.localSkill.repository.CustomerRepository;
 import nl.graduateproject.localSkill.repository.InvoiceRepository;
 import nl.graduateproject.localSkill.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
 
 
@@ -43,24 +48,31 @@ public class InvoiceServiceImpl implements InvoiceService{
         Invoice existingInvoice = invoiceRepository.findById(id).get();
         existingInvoice.setDescription(invoice.getDescription());
         existingInvoice.setCustomer(invoice.getCustomer());
-        existingInvoice.setInvoiceItems(invoice.getInvoiceItems());
+//        existingInvoice.setInvoiceItems(invoice.getInvoiceItems());
         invoiceRepository.save(existingInvoice);
     }
 
     @Override
-    public long createInvoice(InvoiceRequestDto invoiceDto) {
+    public long createInvoice(InvoiceRequestDto invoiceDto
+//            , Customer customer
+    ) {
         Invoice invoice = new Invoice();
         invoice.setDescription(invoiceDto.getDescription());
+
+//        invoice.setCustomer(customer);
+//        invoice.setMessage(invoice.getMessage());
         for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoices()) {
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
             ItemsOnInvoice itemsOnInvoice = new ItemsOnInvoice();
-            //giwerkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
+            //hieronder werkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
             //itemsOnInvoice.setId(item.getId());
-            itemsOnInvoice.setItem(item);//Maar dit werkt wel!
+            itemsOnInvoice.setItem(item);//Maar dit werkt wel! De rest gaat wel stuk!
             itemsOnInvoice.setAmount(itemDto.getAmount());
             invoice.getItemsOnInvoices().add(itemsOnInvoice);
             itemsOnInvoice.setInvoice(invoice);
         }
+        invoice.setCustomer(invoiceDto.getCustomer());
+        invoice.setMessage(invoiceDto.getMessage());
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }

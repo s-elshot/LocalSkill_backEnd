@@ -1,6 +1,7 @@
 package nl.graduateproject.localSkill.controller;
 
 import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class InvoiceController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> createInvoice(@RequestBody InvoiceRequestDto invoiceDto) {
+    public ResponseEntity<Object> createInvoice(@RequestBody InvoiceRequestDto invoiceDto, Customer customer) {
         long newId = invoiceService.createInvoice(invoiceDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newId).toUri();

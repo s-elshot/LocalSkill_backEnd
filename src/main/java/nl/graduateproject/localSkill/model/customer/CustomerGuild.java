@@ -21,10 +21,8 @@ public enum CustomerGuild {
     LEGAL("LEGAL"),
     HUMAN_RESOURCES("HUMAN_RESOURCES");
 
-    // store fields of the enum in "name"
     private final String name;
 
-    // constructor needs as one of the two fields
     CustomerGuild(String name){
         this.name = name;
     }
