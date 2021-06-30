@@ -3,7 +3,6 @@ package nl.graduateproject.localSkill.model.authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 @Data

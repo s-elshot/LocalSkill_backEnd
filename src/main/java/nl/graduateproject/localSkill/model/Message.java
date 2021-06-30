@@ -21,24 +21,21 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-    // nullable of verplicht in constructor?
     @Column
     private String title;
 
-    // nullable of verplicht in constructor?
     @Column
     private String bodyText;
 
     @Column
     private LocalDate date;
 
-    // aggregational relationship ((child: message)can exist without parent(invoice))
     @OneToOne
-    @JoinColumn(name = "invoice_id", referencedColumnName = "id")
+    @JoinColumn(name = "invoice_id"
+//            , referencedColumnName = "id"
+    )
     private Invoice invoice;
 
-    // aggregational relationship ((child)can exist without parent)
     @ManyToOne
     @JoinColumn(name = "username")
     private Customer customer;

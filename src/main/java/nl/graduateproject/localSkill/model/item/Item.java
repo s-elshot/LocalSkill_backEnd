@@ -3,13 +3,10 @@ package nl.graduateproject.localSkill.model.item;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.ItemsOnInvoice;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.fileDB.FileDB;
-
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
-
 import java.util.Collection;
 import java.util.Optional;
 

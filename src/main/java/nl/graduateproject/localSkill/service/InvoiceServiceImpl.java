@@ -26,10 +26,6 @@ public class InvoiceServiceImpl implements InvoiceService{
     @Autowired
     private ItemRepository itemRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-
 
     @Override
     public Collection<Invoice> getInvoices() {
@@ -48,7 +44,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         Invoice existingInvoice = invoiceRepository.findById(id).get();
         existingInvoice.setDescription(invoice.getDescription());
         existingInvoice.setCustomer(invoice.getCustomer());
-//        existingInvoice.setInvoiceItems(invoice.getInvoiceItems());
+
         invoiceRepository.save(existingInvoice);
     }
 
@@ -62,7 +58,13 @@ public class InvoiceServiceImpl implements InvoiceService{
 //        invoice.setCustomer(customer);
 //        invoice.setMessage(invoice.getMessage());
         for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoices()) {
+
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
+
+//            if (item = null){
+//                throw RecordNotFoundException;
+//            }
+            // af vangen slechte data
             ItemsOnInvoice itemsOnInvoice = new ItemsOnInvoice();
             //hieronder werkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
             //itemsOnInvoice.setId(item.getId());

@@ -1,7 +1,7 @@
 package nl.graduateproject.localSkill.service;
 
 
-//import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
+
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.exceptions.UsernameNotFoundException;
 import nl.graduateproject.localSkill.model.authority.Authority;
@@ -45,12 +45,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String createCustomer(Customer customer) {
-        String randomString = RandomStringGenerator.generateAlphaNumeric(20);
-        customer.setApikey(randomString);
-//        customer.setAuthorities("ROLE_USER");
-        Customer newCustomer = customerRepository.save(customer);
-        return newCustomer.getUsername();
-    }
+        // TESTEN
+//        if (Boolean.FALSE.equals(customerRepository.existsByUsername(signUpRequest.getUsername()))) {
+            String randomString = RandomStringGenerator.generateAlphaNumeric(20);
+            customer.setApikey(randomString);
+            // hernoemen naar customerAuthority
+            Authority newAuthority = new Authority();
+            newAuthority.setUsername(customer.getUsername());
+            newAuthority.setAuthority(CustomerType.CUSTOMER.toString());
+            customer.getAuthorities().add(newAuthority);
+            Customer newCustomer = customerRepository.save(customer);
+            return newCustomer.getUsername();
+        }
 
     @Override
     public void updateCustomer(String username, Customer newCustomer) {
