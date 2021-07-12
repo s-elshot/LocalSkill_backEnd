@@ -1,8 +1,7 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.exceptions.BadRequestException;
+
 import nl.graduateproject.localSkill.model.customer.Customer;
-import nl.graduateproject.localSkill.model.customer.CustomerGuild;
 import nl.graduateproject.localSkill.model.customer.CustomerType;
 import nl.graduateproject.localSkill.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,9 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerService.getAllCustomers());
     }
 
-    @GetMapping(value = "/{username}")
-    public ResponseEntity<Object> getCustomerByUsername(@PathVariable("username") String username) {
-        return ResponseEntity.ok().body(customerService.getCustomerByUsername(username));
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Object> getCustomerById(@PathVariable("id") long id) {
+        return ResponseEntity.ok().body(customerService.getCustomerById(id));
     }
 
     @GetMapping(value = "/role/{userRole}")
@@ -45,47 +44,31 @@ public class CustomerController {
     }
 
     @GetMapping(value = "guild/{guild}")
-    public ResponseEntity<Object> getCustomersByGuild(@PathVariable("guild")CustomerGuild customerGuild) {
-        return ResponseEntity.ok(customerService.findByCustomerGuildEquals(customerGuild));
+    public ResponseEntity<Object> getCustomersByGuild(@PathVariable("guild") String guild) {
+        return ResponseEntity.ok(customerService.findByGuildEquals(guild));
     }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) {
-        String newUsername = customerService.createCustomer(customer);
+        long newId = customerService.createCustomer(customer);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
-                .buildAndExpand(newUsername).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(newId).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(value = "/{username}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable("username") String username, @RequestBody Customer customer) {
-        customerService.updateCustomer(username, customer);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
+        customerService.updateCustomer(id, customer);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/{username}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable("username")String username) {
-        customerService.deleteCustomer(username);
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable("id") long id) {
+        customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/{username}/authorities")
-    public ResponseEntity<Object> addCustomerAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
-        try {
-            String authorityName = (String) fields.get("authority");
-            customerService.addAuthority(username, authorityName);
-            return ResponseEntity.noContent().build();
-        }
-        catch (Exception ex) {
-            throw new BadRequestException();
-        }
-    }
 
-    @DeleteMapping(value = "/{username}/authorities/{authority}")
-    public ResponseEntity<Object> deleteUserAuthority(@PathVariable("username") String username, @PathVariable("authority") String authority) {
-        customerService.removeAuthority(username, authority);
-        return ResponseEntity.noContent().build();
-    }
 }

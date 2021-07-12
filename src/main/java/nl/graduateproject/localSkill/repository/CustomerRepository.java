@@ -7,16 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, String> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     public Collection<Customer> findAllByAreaCode(String areaCode);
 
     public Collection<Customer> findByUserRoleEquals(CustomerType userRole);
-
-    public Collection<Customer> findByCustomerGuildEquals(CustomerGuild customerGuild);
 
 
 

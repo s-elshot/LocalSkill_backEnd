@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.Invoice;
-import nl.graduateproject.localSkill.model.authority.Authority;
+
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.model.Message;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,10 +21,20 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table
+//        (uniqueConstraints = {
+//        @UniqueConstraint(columnNames = "userName"),
+//        @UniqueConstraint(columnNames = "email")
+//})
 public class Customer {
 
+
     @Id
-    @Column(nullable = false, unique = true)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private long id;
+
+    @Column
+//    @NotBlank
+    @Size(max = 20)
     private String username;
 
     @Column
@@ -31,6 +44,9 @@ public class Customer {
     private String lastName;
 
     @Column
+//    @NotBlank
+    @Size(max = 50)
+//    @Email
 //            (nullable = false, unique = true)
     private String email;
 
@@ -42,7 +58,8 @@ public class Customer {
     private String city;
 
     @Column
-//            (nullable = false)
+//    @NotBlank
+    @Size(max = 120)
     private String password;
 
 
@@ -50,8 +67,6 @@ public class Customer {
 //            (nullable = false)
     private boolean enabled;
 
-    @Column
-    private String apikey;
 
     @Enumerated(EnumType.STRING)
     private CustomerGuild customerGuild;
@@ -59,13 +74,6 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private CustomerType userRole;
 
-    @OneToMany(
-            targetEntity = Authority.class,
-            mappedBy = "username",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER)
-    private Set<Authority> authorities = new HashSet<>();
 
     @OneToMany(
             mappedBy = "customer",
@@ -95,12 +103,6 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Invoice>invoices = new ArrayList<>();
 
-    public void addAuthority(Authority authority) {
-        this.authorities.add(authority);
-    }
-    public void removeAuthority(Authority authority) {
-        this.authorities.remove(authority);
-    }
 
 }
 

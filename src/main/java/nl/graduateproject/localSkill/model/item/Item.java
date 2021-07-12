@@ -41,7 +41,7 @@ public class Item {
     private ItemType itemType;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(

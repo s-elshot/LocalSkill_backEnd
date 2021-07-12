@@ -32,12 +32,12 @@ public class Message {
 
     @OneToOne
     @JoinColumn(name = "invoice_id"
-//            , referencedColumnName = "id"
+            , referencedColumnName = "id"
     )
     private Invoice invoice;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
 

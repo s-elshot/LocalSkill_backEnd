@@ -25,7 +25,7 @@ public class Invoice {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToOne
