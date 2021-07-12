@@ -41,7 +41,6 @@ public class Customer {
     @Column
     private String city;
 
-
     @Column
 //            (nullable = false)
     private String password;

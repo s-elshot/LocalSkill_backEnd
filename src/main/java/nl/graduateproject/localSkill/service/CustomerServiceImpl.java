@@ -50,10 +50,10 @@ public class CustomerServiceImpl implements CustomerService {
             String randomString = RandomStringGenerator.generateAlphaNumeric(20);
             customer.setApikey(randomString);
             // hernoemen naar customerAuthority
-            Authority newAuthority = new Authority();
-            newAuthority.setUsername(customer.getUsername());
-            newAuthority.setAuthority(CustomerType.CUSTOMER.toString());
-            customer.getAuthorities().add(newAuthority);
+//            Authority newAuthority = new Authority();
+//            newAuthority.setUsername(customer.getUsername());
+//            newAuthority.setAuthority(CustomerType.CUSTOMER.toString());
+//            customer.getAuthorities().add(newAuthority);
             Customer newCustomer = customerRepository.save(customer);
             return newCustomer.getUsername();
         }
