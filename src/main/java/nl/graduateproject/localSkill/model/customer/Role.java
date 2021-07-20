@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+@NoArgsConstructor
+public class AuthRole {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -19,4 +19,24 @@ public class Role {
     @Column(length = 20)
     private ERole name;
 
+
+    public AuthRole(ERole name) {
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public ERole getName() {
+        return name;
+    }
+
+    public void setName(ERole name) {
+        this.name = name;
+    }
 }
