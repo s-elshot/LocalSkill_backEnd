@@ -61,4 +61,18 @@ public class Item {
     )
     @JsonIgnoreProperties("item")
     private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
+
+//    public void addFile(FileDB fileDB) {
+//        fileDBs.add(fileDB);
+//        fileDB.setItem(this);
+//    }
+//
+//    public void removeFile(FileDB fileDB) {
+//        fileDBs.remove(fileDB);
+//        fileDB.setItem(null);
+//    }
+
+
+
+
 }

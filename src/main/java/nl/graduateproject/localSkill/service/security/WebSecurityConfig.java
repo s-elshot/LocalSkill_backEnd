@@ -1,8 +1,8 @@
-package nl.graduateproject.localSkill.security;
+package nl.graduateproject.localSkill.service.security;
 
-import nl.graduateproject.localSkill.security.jwt.AuthEntryPointJwt;
-import nl.graduateproject.localSkill.security.jwt.AuthTokenFilter;
-import nl.graduateproject.localSkill.security.services.UserDetailsServiceImpl;
+
+import nl.graduateproject.localSkill.service.security.jwt.AuthEntryPointJwt;
+import nl.graduateproject.localSkill.service.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -14,22 +14,25 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
+/**
+ * Hier gebruiken we de EnableGlobalMethodSecurity(prePostIsEnabled = true) om de @PreAuthorize annotaties te gebruiken
+ * op andere plekken in de applicatie.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        // securedEnabled = true,
-        // jsr250Enabled = true,
-        prePostEnabled = true)
+        prePostEnabled = true
+)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Qualifier("userDetailsServiceImpl")
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    UserDetailsService userDetailsService;
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
@@ -61,8 +64,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
-                .anyRequest().authenticated();
+//                .antMatchers("/item/").permitAll()
+                .antMatchers("/customer/**").permitAll()
+//                .antMatchers("/customer/**").hasRole("USER")
+//                .antMatchers("/customer/**").hasRole("MODERATOR")
+//                .antMatchers("/file/**").hasRole("USER")
+//                .antMatchers("/file/**").hasRole("MODERATOR")
+//                .antMatchers("/message/**").hasRole("USER")
+//                .antMatchers("/message/**").hasRole("MODERATOR")
+//                .antMatchers("/invoice/**").hasRole("USER")
+//                .antMatchers("/invoice/**").hasRole("MODERATOR")
+
+                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/customer/**").hasRole("USER")
+                .antMatchers("/api/test/**").permitAll();
+//                .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

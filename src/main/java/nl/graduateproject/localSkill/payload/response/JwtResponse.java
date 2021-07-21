@@ -1,4 +1,4 @@
-package nl.graduateproject.localSkill.payload;
+package nl.graduateproject.localSkill.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

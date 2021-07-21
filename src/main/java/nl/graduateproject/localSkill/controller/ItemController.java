@@ -42,10 +42,10 @@ public class ItemController {
     return ResponseEntity.ok(itemService.getItemByItemType(itemType));
     }
 
-    @GetMapping(value = "customer/{customer}")
-    public ResponseEntity<Object> getItemsByCustomer(@PathVariable("customer") Customer customer){
-        return ResponseEntity.ok(itemService.getItemsByCustomer(customer));
-    }
+//    @GetMapping(value = "customer/{customer}")
+//    public ResponseEntity<Object> getItemsByCustomer(@PathVariable("customer") Customer customer){
+//        return ResponseEntity.ok(itemService.getItemsByCustomer(customer));
+//    }
 
     @PostMapping(value = "")
     public ResponseEntity<Object> createItem(@RequestBody Item item) {

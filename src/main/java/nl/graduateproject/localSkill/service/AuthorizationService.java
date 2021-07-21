@@ -1,17 +1,15 @@
-package nl.graduateproject.localSkill.service.security;
-
+package nl.graduateproject.localSkill.service;
 
 import lombok.Data;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.customer.ERole;
 import nl.graduateproject.localSkill.model.customer.Role;
-import nl.graduateproject.localSkill.payload.JwtResponse;
-import nl.graduateproject.localSkill.payload.MessageResponse;
+import nl.graduateproject.localSkill.payload.response.JwtResponse;
+import nl.graduateproject.localSkill.payload.response.MessageResponse;
 import nl.graduateproject.localSkill.payload.Request.LoginRequest;
 import nl.graduateproject.localSkill.payload.Request.SignupRequest;
 import nl.graduateproject.localSkill.repository.CustomerRepository;
 import nl.graduateproject.localSkill.repository.RoleRepository;
-import nl.graduateproject.localSkill.service.UserDetailsImpl;
 import nl.graduateproject.localSkill.service.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -89,9 +87,9 @@ public class AuthorizationService {
         }
 
         // Create new user's account
-        Customer customer = new Customer(signUpRequest.getUsername(),
+        Customer customer = new Customer (signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()));;
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();

@@ -71,7 +71,6 @@ public class CustomerServiceImpl implements CustomerService {
         existingCustomer.setAreaCode(customer.getAreaCode());
         existingCustomer.setCity(customer.getCity());
         existingCustomer.setPassword(customer.getPassword());
-        existingCustomer.setEnabled(customer.isEnabled());
         existingCustomer.setCustomerGuild(customer.getCustomerGuild());
         existingCustomer.setUserRole(customer.getUserRole());
 
