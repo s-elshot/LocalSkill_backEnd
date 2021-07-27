@@ -1,6 +1,7 @@
 package nl.graduateproject.localSkill.controller;
 
 import nl.graduateproject.localSkill.model.Message;
+import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class MessageController {
         return ResponseEntity.ok().body(messageService.getMessageById(id));
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     public ResponseEntity<Object> createMessage(@RequestBody Message message) {
         long newId = messageService.createMessage(message);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

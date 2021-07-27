@@ -46,8 +46,9 @@ public class Item {
 
     @OneToMany(
             mappedBy ="item",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
+//            ,
+//            orphanRemoval = true
     )
     @JsonIgnoreProperties("item")
     private List<FileDB> fileDBs = new ArrayList<>();

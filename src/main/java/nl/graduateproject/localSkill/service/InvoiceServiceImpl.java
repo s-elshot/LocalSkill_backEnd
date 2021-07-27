@@ -4,11 +4,9 @@ package nl.graduateproject.localSkill.service;
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.ItemsOnInvoice;
-import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
-import nl.graduateproject.localSkill.repository.CustomerRepository;
 import nl.graduateproject.localSkill.repository.InvoiceRepository;
 import nl.graduateproject.localSkill.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +41,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         if (!invoiceRepository.existsById(id)) throw new RecordNotFoundException();
         Invoice existingInvoice = invoiceRepository.findById(id).get();
         existingInvoice.setDescription(invoice.getDescription());
+        existingInvoice.setTotalPrice(invoice.getTotalPrice());
         existingInvoice.setCustomer(invoice.getCustomer());
 
         invoiceRepository.save(existingInvoice);

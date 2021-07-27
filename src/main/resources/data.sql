@@ -1,27 +1,27 @@
 
 
-insert into customer(id,password, first_name, last_name, email, area_code, user_role,  city, customer_guild)
-values (1000,'$2y$12$ORMqR3napnNSGA.vI1Xgmubi4iQRmoaB3pH52wugGiq8t6v.d3A4e','Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','GUILDER','Beverwijk','SALES');
-insert into customer(id,first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (2000,'Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL','GUILDER', 'Beverwijk','SALES');
+insert into customer(id,password,username, first_name, last_name, email, area_code, user_role,  city, customer_guild)
+values (1000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Stephan','Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','GUILDER','Beverwijk','SALES');
+insert into customer(id,password, username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
+values (2000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Susanne','Susanne', 'Bijwaard', 'susannebijwaard@yahoo.com', '1946AL','GUILDER', 'Beverwijk','SALES');
 insert into customer(id, password, username, first_name, last_name, email, area_code,user_role,  city)
-values (3000,'Michel','Michel','Michel', 'Lalmohamed', 'mlalmohamed@gmail.com', '1946AL','CUSTOMER','Beverwijk');
+values (3000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Michel','Michel', 'Lalmohamed', 'mlalmohamed@gmail.com', '1946AL','CUSTOMER','Beverwijk');
 insert into customer(id, password,username, first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (4000,'Zhara','Zhara','Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL', 'GUILDER', 'Beverwijk', 'FOOD');
+values (4000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Zhara','Zhara', 'Lalmohamed', 'susannebijwaard@yahoo.com', '1946AL', 'GUILDER', 'Beverwijk', 'FOOD');
 insert into customer(id, password,username,first_name, last_name, email, area_code, user_role,  city,customer_guild)
-values (5000,'Giel','Giel','Giel', 'Bijwaard', 'giel@gmail.com', '1946AL','GUILDER','Beverwijk','FINANCE');
+values (5000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Giel','Giel', 'Bijwaard', 'giel@gmail.com', '1946AL','GUILDER','Beverwijk','FINANCE');
 insert into customer(id,password,username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (6000,'Miquel','Miquel','Miquel', 'Elshot', 'miquelio@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'CONSTRUCTION');
+values (6000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Miquel','Miquel', 'Elshot', 'miquelio@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'CONSTRUCTION');
 insert into customer(id,password,username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (7000,'Guno','Guno','Guno', 'Elshot', 'guno@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'LEISURE');
+values (7000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Guno','Guno', 'Elshot', 'guno@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'LEISURE');
 insert into customer(id,password,username,first_name, last_name, email, area_code, user_role, city, customer_guild )
-values (8000,'Miles','Miles','Miles', 'Elshot', 'Miles@yahoo.com', '1946AL', 'GUILDER', 'Amsterdam', 'SPORT');
+values (8000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Miles','Miles', 'Elshot', 'Miles@yahoo.com', '1946AL', 'GUILDER', 'Amsterdam', 'SPORT');
 insert into customer(id,password,username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (9000,'Julian','Julian','Julian', 'Elshot', 'julian@yahoo.com', '1946AL', 'GUILDER', 'Beverwijk', 'CREATIVE_DESIGN');
+values (9000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Julian','Julian', 'Elshot', 'julian@yahoo.com', '1946AL', 'GUILDER', 'Beverwijk', 'CREATIVE_DESIGN');
 insert into customer(id,password,username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
-values (10000,'Doris','Doris','Doris', 'Komproe', 'Doris@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'HEALTHCARE');
+values (10000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Doris','Doris', 'Komproe', 'Doris@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'HEALTHCARE');
 insert into customer(id,password,username,first_name, last_name, email, area_code, user_role, city, customer_guild )
-values (11000,'Atie','Atie','Atie', 'Bijwaard', 'atie@yahoo.com', '1946AL', 'GUILDER', 'Amsterdam', 'SECURITY');
+values (11000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Atie','Atie', 'Bijwaard', 'atie@yahoo.com', '1946AL', 'GUILDER', 'Amsterdam', 'SECURITY');
 -- --
 -- --
 -- --
@@ -185,17 +185,28 @@ insert into invoice(customer_id, description)
 values (3000, 'Guilder items: SALES');
 insert into invoice(customer_id,description)
 values (2000, 'Guilder items:FOOD');
+insert into invoice(customer_id,description)
+values (2000, 'Guilder items:FOOD');
 --
--- insert into invoice(customer_id ,description)
--- values (3000, 'Guilder items: FOOD');
+
 -- --
 -- -- -- -- messages
-insert into messages(title, body_text,customer_id,invoice_id)
-values ('Did it Work?','A check of this relationship is modeled correctly',1000,1);
-insert into messages(title, body_text,customer_id, invoice_id)
-values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3000,2);
+insert into messages(title, body_text,customer_id)
+values ('Did it Work?','A check of this relationship is modeled correctly',1000);
+insert into messages(title, body_text,customer_id)
+values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3000);
 
+-- INVOICE
+insert into invoice(customer_id, description)
+values (1000, 'Guilder items: SALES');
+insert into invoice(customer_id,description)
+values (2000, 'Guilder items:FOOD');
+insert into invoice(customer_id,description)
+values (2000, 'Guilder items:FOOD');
 
 INSERT INTO role(name) VALUES('ROLE_USER');
 INSERT INTO role(name) VALUES('ROLE_MODERATOR');
 INSERT INTO role(name) VALUES('ROLE_ADMIN');
+
+-- insert into items_on_invoice(amount,item_id, invoice_id)
+-- values (3,3,1);

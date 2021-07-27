@@ -1,19 +1,19 @@
 package nl.graduateproject.localSkill.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.customer.Customer;
-import nl.graduateproject.localSkill.model.item.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table
 public class Invoice {
 
@@ -24,12 +24,20 @@ public class Invoice {
     @Column
     private String description;
 
+    //  NEWLY ADDED FIELD!!!!
+    @Column
+    private Double totalPrice;
+
     @ManyToOne
+    //Added JSONIGNORE
+    @JsonIgnoreProperties("invoice")
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToOne
+    @JoinColumn(name = "invoice_id")
     private Message message;
+
 
 //    @ManyToMany
 //    @JoinTable(
@@ -42,8 +50,8 @@ public class Invoice {
 
     @OneToMany(
             mappedBy = "invoice",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
+//            cascade = CascadeType.ALL
     )
     @JsonIgnoreProperties("invoice")
     private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();

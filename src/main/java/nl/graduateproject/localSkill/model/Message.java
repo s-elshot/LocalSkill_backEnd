@@ -30,6 +30,8 @@ public class Message {
     @Column
     private LocalDate date;
 
+
+
     @OneToOne
     @JoinColumn(name = "invoice_id"
             , referencedColumnName = "id"
