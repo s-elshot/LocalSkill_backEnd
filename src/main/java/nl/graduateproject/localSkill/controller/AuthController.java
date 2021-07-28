@@ -2,8 +2,8 @@ package nl.graduateproject.localSkill.controller;
 
 import nl.graduateproject.localSkill.payload.response.JwtResponse;
 import nl.graduateproject.localSkill.payload.response.MessageResponse;
-import nl.graduateproject.localSkill.payload.Request.LoginRequest;
-import nl.graduateproject.localSkill.payload.Request.SignupRequest;
+import nl.graduateproject.localSkill.payload.request.LoginRequest;
+import nl.graduateproject.localSkill.payload.request.SignupRequest;
 
 import nl.graduateproject.localSkill.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;

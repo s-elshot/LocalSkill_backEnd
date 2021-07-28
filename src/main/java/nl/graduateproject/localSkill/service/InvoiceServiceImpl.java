@@ -3,7 +3,7 @@ package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
-import nl.graduateproject.localSkill.model.ItemsOnInvoice;
+import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
@@ -48,15 +48,14 @@ public class InvoiceServiceImpl implements InvoiceService{
     }
 
     @Override
-    public long createInvoice(InvoiceRequestDto invoiceDto
-//            , Customer customer
-    ) {
+    public long createInvoice(InvoiceRequestDto invoiceDto) {
         Invoice invoice = new Invoice();
         invoice.setDescription(invoiceDto.getDescription());
+        invoice.setTotalPrice(invoiceDto.getTotalPrice());
+        invoice.setCustomer(invoiceDto.getCustomer());
+//        invoice.setMessage(invoiceDto.getMessage());
 
-//        invoice.setCustomer(customer);
-//        invoice.setMessage(invoice.getMessage());
-        for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoices()) {
+        for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoice()) {
 
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
 
@@ -64,16 +63,17 @@ public class InvoiceServiceImpl implements InvoiceService{
 //                throw RecordNotFoundException;
 //            }
             // af vangen slechte data
-            ItemsOnInvoice itemsOnInvoice = new ItemsOnInvoice();
+            ItemOnInvoice itemsOnInvoice = new ItemOnInvoice();
             //hieronder werkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
             //itemsOnInvoice.setId(item.getId());
             itemsOnInvoice.setItem(item);//Maar dit werkt wel! De rest gaat wel stuk!
-            itemsOnInvoice.setAmount(itemDto.getAmount());
-            invoice.getItemsOnInvoices().add(itemsOnInvoice);
+//            itemsOnInvoice.setQuantity(itemDto.getCount());
+//            itemOnInvoice.setAmount(itemDto.getAmount());
+            invoice.getItemsOnInvoice().add(itemsOnInvoice);
             itemsOnInvoice.setInvoice(invoice);
         }
         invoice.setCustomer(invoiceDto.getCustomer());
-        invoice.setMessage(invoiceDto.getMessage());
+//        invoice.setMessage(invoiceDto.getMessage());
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }

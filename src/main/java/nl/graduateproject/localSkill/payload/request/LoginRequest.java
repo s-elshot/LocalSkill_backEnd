@@ -1,4 +1,4 @@
-package nl.graduateproject.localSkill.payload.Request;
+package nl.graduateproject.localSkill.payload.request;
 
 import lombok.Data;
 

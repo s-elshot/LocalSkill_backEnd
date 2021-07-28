@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.ItemsOnInvoice;
+import nl.graduateproject.localSkill.model.ItemOnInvoice;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -8,17 +8,19 @@ import java.util.Optional;
 public interface ItemsOnInvoiceService {
 
 
-    public Collection<ItemsOnInvoice> getItemsOnInvoices();
+    public Collection<ItemOnInvoice> getItemsOnInvoices();
 
-    public Optional<ItemsOnInvoice> getItemsOnInvoiceById(long id);
+    public Optional<ItemOnInvoice> getItemsOnInvoiceById(long id);
+
+    public void addItemOnInvoice(ItemOnInvoice itemOnInvoice);
 
     public boolean ItemsOnInvoiceExistsById(long id);
 
-    public long createItemsOnInvoice(ItemsOnInvoice itemsOnInvoice);
+    public long createItemsOnInvoice(ItemOnInvoice itemOnInvoice);
 
     public void deleteItemsOnInvoice(long id);
 
-    public void updateItemsOnInvoice(long id, ItemsOnInvoice itemsOnInvoice);
+    public void updateItemsOnInvoice(long id, ItemOnInvoice itemOnInvoice);
 
 
 }

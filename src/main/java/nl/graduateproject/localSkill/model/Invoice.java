@@ -31,28 +31,19 @@ public class Invoice {
     @ManyToOne
     //Added JSONIGNORE
     @JsonIgnoreProperties("invoice")
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "invoice_id")
     private Message message;
 
-
-//    @ManyToMany
-//    @JoinTable(
-//            name = "invoice_items",
-//            joinColumns = @JoinColumn(name = "invoice_id"),
-//            inverseJoinColumns = @JoinColumn(name = "items_id")
-//    )
-//    @JsonIgnoreProperties("invoices")
-//    private List<Item> invoiceItems = new ArrayList<>();
-
     @OneToMany(
             mappedBy = "invoice",
             fetch = FetchType.LAZY
-//            cascade = CascadeType.ALL
     )
     @JsonIgnoreProperties("invoice")
-    private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
+    private List<ItemOnInvoice> itemsOnInvoice = new ArrayList<>();
+
+
 }

@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.ItemsOnInvoice;
+import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.service.ItemsOnInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +30,16 @@ public class ItemsOnInvoicesController {
 
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> createItemsOnInvoice(@RequestBody ItemsOnInvoice itemsOnInvoice) {
-        long newId = itemsOnInvoiceService.createItemsOnInvoice(itemsOnInvoice);
+    public ResponseEntity<Object> createItemsOnInvoice(@RequestBody ItemOnInvoice itemOnInvoice) {
+        long newId = itemsOnInvoiceService.createItemsOnInvoice(itemOnInvoice);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newId).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateItemsOnInvoice(@PathVariable("id") long id, @RequestBody ItemsOnInvoice itemsOnInvoice) {
-        itemsOnInvoiceService.updateItemsOnInvoice(id, itemsOnInvoice);
+    public ResponseEntity<Object> updateItemsOnInvoice(@PathVariable("id") long id, @RequestBody ItemOnInvoice itemOnInvoice) {
+        itemsOnInvoiceService.updateItemsOnInvoice(id, itemOnInvoice);
         return ResponseEntity.noContent().build();
     }
 

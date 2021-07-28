@@ -32,8 +32,7 @@ public class MessageServiceImpl implements MessageService {
         Message existingMessage = messageRepository.findById(id).get();
         existingMessage.setTitle(message.getTitle());
         existingMessage.setBodyText(message.getBodyText());
-        existingMessage.setDate(message.getDate());
-        existingMessage.setCustomer(message.getCustomer());
+//        existingMessage.setCustomer(message.getCustomer());
         messageRepository.save(existingMessage);
     }
 

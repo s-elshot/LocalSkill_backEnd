@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.customer.Customer;
@@ -26,11 +27,6 @@ public class Message {
 
     @Column
     private String bodyText;
-
-    @Column
-    private LocalDate date;
-
-
 
     @OneToOne
     @JoinColumn(name = "invoice_id"

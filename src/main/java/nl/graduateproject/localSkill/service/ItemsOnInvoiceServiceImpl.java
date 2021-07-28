@@ -1,7 +1,7 @@
 package nl.graduateproject.localSkill.service;
 
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
-import nl.graduateproject.localSkill.model.ItemsOnInvoice;
+import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.repository.ItemsOnInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,19 @@ public class ItemsOnInvoiceServiceImpl implements ItemsOnInvoiceService {
     }
 
     @Override
-    public Collection<ItemsOnInvoice> getItemsOnInvoices() {
+    public Collection<ItemOnInvoice> getItemsOnInvoices() {
         return itemsOnInvoiceRepository.findAll();
     }
 
     @Override
-    public Optional<ItemsOnInvoice> getItemsOnInvoiceById(long id) {
+    public Optional<ItemOnInvoice> getItemsOnInvoiceById(long id) {
         if (!itemsOnInvoiceRepository.existsById(id)) throw new RecordNotFoundException();
         return itemsOnInvoiceRepository.findById(id);
+    }
+
+    @Override
+    public void addItemOnInvoice(ItemOnInvoice itemOnInvoice) {
+        itemsOnInvoiceRepository.save(itemOnInvoice);
     }
 
     @Override
@@ -38,14 +43,14 @@ public class ItemsOnInvoiceServiceImpl implements ItemsOnInvoiceService {
     }
 
     @Override
-    public long createItemsOnInvoice(ItemsOnInvoice itemsOnInvoice) {
-        ItemsOnInvoice newItemsOnInvoice = itemsOnInvoiceRepository.save(itemsOnInvoice);
-        return newItemsOnInvoice.getId();
+    public long createItemsOnInvoice(ItemOnInvoice itemOnInvoice) {
+        ItemOnInvoice newItemOnInvoice = itemsOnInvoiceRepository.save(itemOnInvoice);
+        return newItemOnInvoice.getId();
     }
 
 
     @Override
-    public void updateItemsOnInvoice(long id, ItemsOnInvoice itemsOnInvoice) {
+    public void updateItemsOnInvoice(long id, ItemOnInvoice itemOnInvoice) {
 
     }
 }

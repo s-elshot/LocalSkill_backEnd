@@ -93,7 +93,6 @@ public class Customer {
     private List<Item> items = new ArrayList<>();
 
 
-
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL

@@ -192,9 +192,11 @@ values (2000, 'Guilder items:FOOD');
 -- --
 -- -- -- -- messages
 insert into messages(title, body_text,customer_id)
-values ('Did it Work?','A check of this relationship is modeled correctly',1000);
-insert into messages(title, body_text,customer_id)
 values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3000);
+-- insert into messages(title, body_text,customer_id)
+-- values ('Did it Work?','A check of this relationship is modeled correctly',1000);
+-- insert into messages(title, body_text,customer_id)
+-- values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3000);
 
 -- INVOICE
 insert into invoice(customer_id, description)
