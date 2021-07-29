@@ -11,7 +11,7 @@ import javax.persistence.*;
 //  https://bezkoder.com/spring-boot-upload-file-database/
 @Entity
 @Table(name = "files")
-public class FileDB {
+public class Image {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -25,13 +25,13 @@ public class FileDB {
     private byte[] data;
 
     @ManyToOne
-    @JoinColumn(name = "items_id")
+    @JoinColumn(name = "item_id")
     private Item item;
 
-    public FileDB() {
+    public Image() {
     }
 
-    public FileDB(String name, String type, byte[] data) {
+    public Image(String name, String type, byte[] data) {
         this.name = name;
         this.type = type;
         this.data = data;

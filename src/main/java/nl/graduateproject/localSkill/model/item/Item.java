@@ -3,8 +3,9 @@ package nl.graduateproject.localSkill.model.item;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.model.customer.Customer;
-import nl.graduateproject.localSkill.model.fileDB.FileDB;
+import nl.graduateproject.localSkill.model.fileDB.Image;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,22 +51,22 @@ public class Item {
 //            orphanRemoval = true
     )
     @JsonIgnoreProperties("item")
-    private List<FileDB> fileDBs = new ArrayList<>();
+    private List<Image> images = new ArrayList<>();
 
-//    @OneToMany(
-//            mappedBy = "item",
-//            cascade = CascadeType.ALL
-//    )
-//    @JsonIgnoreProperties("item")
-//    private List<ItemsOnInvoice> itemsOnInvoices = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "item",
+            cascade = CascadeType.ALL
+    )
+    @JsonIgnoreProperties("item")
+    private List<ItemOnInvoice> itemOnInvoices = new ArrayList<>();
 
-//    public void addFile(FileDB fileDB) {
-//        fileDBs.add(fileDB);
+//    public void addFile(Image fileDB) {
+//        images.add(fileDB);
 //        fileDB.setItem(this);
 //    }
 //
-//    public void removeFile(FileDB fileDB) {
-//        fileDBs.remove(fileDB);
+//    public void removeFile(Image fileDB) {
+//        images.remove(fileDB);
 //        fileDB.setItem(null);
 //    }
 

@@ -119,11 +119,19 @@ public class Customer {
     private Set<Role> roles;
 
 
-    public Customer(@Size(max = 20) String username, @Size(max = 50) String email, @Size(max = 120) String password) {
+    public Customer(@Size(max = 20) String username,@Size(max = 50) String email, String firstName,String lastName, String areaCode, String city, CustomerGuild customerGuild, CustomerType userRole,@Size(max = 120) String password) {
         this.username = username;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.areaCode = areaCode;
+        this.city = city;
+        this.customerGuild = customerGuild;
+        this.userRole = userRole;
         this.password = password;
     }
+
+
 }
 
 

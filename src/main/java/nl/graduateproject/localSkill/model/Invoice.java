@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.customer.Customer;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,14 @@ public class Invoice {
     @Column
     private Double totalPrice;
 
+    // NEWLY ADDED FIELD!!!!!!!!
+//    @Column
+//    private Long customerId;
+
     @ManyToOne
     //Added JSONIGNORE
     @JsonIgnoreProperties("invoice")
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
     @OneToOne
@@ -44,6 +49,11 @@ public class Invoice {
     )
     @JsonIgnoreProperties("invoice")
     private List<ItemOnInvoice> itemsOnInvoice = new ArrayList<>();
+
+//    public Invoice(PlaceInvoiceDto orderDto, Long customerId){
+//        this.customerId = customerId;
+//        this.totalPrice = orderDto.getTotalPrice();
+//    }
 
 
 }

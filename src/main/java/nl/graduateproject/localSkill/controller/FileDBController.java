@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.controller;
 
-import nl.graduateproject.localSkill.model.fileDB.FileDB;
+import nl.graduateproject.localSkill.model.fileDB.Image;
 
 import nl.graduateproject.localSkill.model.fileDB.ResponseFile;
 import nl.graduateproject.localSkill.model.fileDB.ResponseMessage;
@@ -59,10 +59,10 @@ public class FileDBController {
 
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        FileDB fileDB = storageService.getFile(id);
+        Image image = storageService.getFile(id);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-                .body(fileDB.getData());
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getName() + "\"")
+                .body(image.getData());
     }
 }

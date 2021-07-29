@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.Invoice;
+import nl.graduateproject.localSkill.model.item.Item;
 import nl.graduateproject.localSkill.model.item.ItemType;
 
 
@@ -31,11 +33,4 @@ public class ItemsOnInvoiceRequestDto {
 
 
 
-//    private Long id;
-//    private String name;
-//    private double price;
-//    private String description;
-//    private int number;
-//    private int count;
-//    private ItemType itemType;
 }

@@ -53,27 +53,21 @@ public class InvoiceServiceImpl implements InvoiceService{
         invoice.setDescription(invoiceDto.getDescription());
         invoice.setTotalPrice(invoiceDto.getTotalPrice());
         invoice.setCustomer(invoiceDto.getCustomer());
-//        invoice.setMessage(invoiceDto.getMessage());
+        invoice.setMessage(invoiceDto.getMessage());
 
         for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoice()) {
 
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
 
-//            if (item = null){
-//                throw RecordNotFoundException;
-//            }
+
             // af vangen slechte data
             ItemOnInvoice itemsOnInvoice = new ItemOnInvoice();
-            //hieronder werkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
+//            //hieronder werkt NIET!! Dit zet in de tabel items_on_invoice de id maar niet item_id
             //itemsOnInvoice.setId(item.getId());
             itemsOnInvoice.setItem(item);//Maar dit werkt wel! De rest gaat wel stuk!
-//            itemsOnInvoice.setQuantity(itemDto.getCount());
-//            itemOnInvoice.setAmount(itemDto.getAmount());
             invoice.getItemsOnInvoice().add(itemsOnInvoice);
             itemsOnInvoice.setInvoice(invoice);
         }
-        invoice.setCustomer(invoiceDto.getCustomer());
-//        invoice.setMessage(invoiceDto.getMessage());
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }

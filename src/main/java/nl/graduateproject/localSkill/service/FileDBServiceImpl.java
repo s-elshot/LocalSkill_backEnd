@@ -1,6 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
-import nl.graduateproject.localSkill.model.fileDB.FileDB;
+import nl.graduateproject.localSkill.model.fileDB.Image;
 import nl.graduateproject.localSkill.repository.FileDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +16,18 @@ public class FileDBServiceImpl implements FileDBService {
     @Autowired
     private FileDBRepository fileDBRepository;
 
-    public FileDB store(MultipartFile file) throws IOException {
+    public Image store(MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
+        Image Image = new Image(fileName, file.getContentType(), file.getBytes());
 
-        return fileDBRepository.save(FileDB);
+        return fileDBRepository.save(Image);
     }
 
-    public FileDB getFile(String id) {
+    public Image getFile(String id) {
         return fileDBRepository.findById(id).get();
     }
 
-    public Stream<FileDB> getAllFiles() {
+    public Stream<Image> getAllFiles() {
         return fileDBRepository.findAll().stream();
     }
 }

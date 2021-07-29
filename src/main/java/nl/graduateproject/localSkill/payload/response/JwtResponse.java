@@ -3,6 +3,8 @@ package nl.graduateproject.localSkill.payload.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.graduateproject.localSkill.model.customer.CustomerGuild;
+import nl.graduateproject.localSkill.model.customer.CustomerType;
 
 import java.util.List;
 
@@ -27,5 +29,6 @@ public class JwtResponse {
     }
 
 
-
+    public JwtResponse(String jwt, Long id, String username, String email, String firstName, String lastName, String areaCode, String areaCode1, String city, CustomerGuild customerGuild, CustomerType userRole, String password, List<String> roles) {
+    }
 }

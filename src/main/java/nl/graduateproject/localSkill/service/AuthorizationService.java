@@ -89,6 +89,12 @@ public class AuthorizationService {
         // Create new user's account
         Customer customer = new Customer (signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
+                signUpRequest.getFirstName(),
+                signUpRequest.getLastName(),
+                signUpRequest.getAreaCode(),
+                signUpRequest.getCity(),
+                signUpRequest.getCustomerGuild(),
+                signUpRequest.getUserRole(),
                 encoder.encode(signUpRequest.getPassword()));;
 
         Set<String> strRoles = signUpRequest.getRole();

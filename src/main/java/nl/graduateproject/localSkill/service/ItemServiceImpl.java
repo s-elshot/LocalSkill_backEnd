@@ -3,7 +3,7 @@ package nl.graduateproject.localSkill.service;//package com.graduateproject.loca
 
 import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.customer.Customer;
-import nl.graduateproject.localSkill.model.fileDB.FileDB;
+import nl.graduateproject.localSkill.model.fileDB.Image;
 import nl.graduateproject.localSkill.model.item.Item;
 
 import nl.graduateproject.localSkill.model.item.ItemType;
@@ -35,11 +35,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public long createItem(Item item) {
-        FileDB itemFileDB = new FileDB();
-        itemFileDB.setName(itemFileDB.getName());
-        itemFileDB.setData(itemFileDB.getData());
-        itemFileDB.setType(itemFileDB.getType());
-        itemFileDB.setItem(itemFileDB.getItem());
+        Image itemImage = new Image();
+        itemImage.setName(itemImage.getName());
+        itemImage.setData(itemImage.getData());
+        itemImage.setType(itemImage.getType());
+        itemImage.setItem(itemImage.getItem());
         Item newItem = itemRepository.save(item);
         return newItem.getId();
     }
@@ -59,7 +59,7 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setCount(item.getCount());
         existingItem.setItemType(item.getItemType());
         existingItem.setCustomer(item.getCustomer());
-//        existingItem.setFileDBs(item.getFileDBs());
+//        existingItem.setImages(item.getImages());
 //        existingItem.setInvoices(item.getInvoices());
         itemRepository.save(existingItem);
     }
