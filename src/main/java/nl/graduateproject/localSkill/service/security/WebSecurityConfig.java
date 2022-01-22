@@ -30,7 +30,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 )
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("userDetailsServiceImpl")
+    @Qualifier("customerDetailsServiceImpl")
     @Autowired
     UserDetailsService userDetailsService;
 
@@ -63,20 +63,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-//                .antMatchers("/item/").permitAll()
+                .authorizeRequests()
+                .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/customer/**").permitAll()
 //                .antMatchers("/customer/**").hasRole("USER")
 //                .antMatchers("/customer/**").hasRole("MODERATOR")
+                .antMatchers("/file/**").permitAll()
+//                .antMatchers("/file/**").hasRole("MODERATOR")
 //                .antMatchers("/file/**").hasRole("USER")
 //                .antMatchers("/file/**").hasRole("MODERATOR")
 //                .antMatchers("/message/**").hasRole("USER")
 //                .antMatchers("/message/**").hasRole("MODERATOR")
 //                .antMatchers("/invoice/**").hasRole("USER")
 //                .antMatchers("/invoice/**").hasRole("MODERATOR")
-
-                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/customer/**").hasRole("USER")
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .antMatchers("admin/**").permitAll()
+                .antMatchers("admin/**").hasRole("ADMIN")
+//                .antMatchers("/customer/**").hasRole("ADMIN")
                 .antMatchers("/api/test/**").permitAll();
 //                .anyRequest().authenticated();
 

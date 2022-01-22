@@ -21,11 +21,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Collection<Item> findItemByNameContains(String name);
 
-//        @Query("SELECT m FROM Movie m WHERE m.title LIKE %:title%")
-//
-//    List<Movie> searchByTitleLike(@Param("title") String title);
 
-//    @Query("SELECT m FROM Movie m WHERE m.title LIKE %:title%")
-//
-//    List<Movie> searchByTitleLike(@Param("title") String title);
 }

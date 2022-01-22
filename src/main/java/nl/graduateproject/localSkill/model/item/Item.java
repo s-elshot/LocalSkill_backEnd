@@ -1,5 +1,6 @@
 package nl.graduateproject.localSkill.model.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,20 +56,13 @@ public class Item {
 
     @OneToMany(
             mappedBy = "item",
-            cascade = CascadeType.ALL
+            cascade = {CascadeType.ALL}
     )
-    @JsonIgnoreProperties("item")
+    @JsonIgnore
+//            @JsonIgnoreProperties("item")
     private List<ItemOnInvoice> itemOnInvoices = new ArrayList<>();
 
-//    public void addFile(Image fileDB) {
-//        images.add(fileDB);
-//        fileDB.setItem(this);
-//    }
-//
-//    public void removeFile(Image fileDB) {
-//        images.remove(fileDB);
-//        fileDB.setItem(null);
-//    }
+
 
 
 

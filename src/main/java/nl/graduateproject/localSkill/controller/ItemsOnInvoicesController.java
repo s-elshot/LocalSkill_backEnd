@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/testklasse")
+@RequestMapping(value = "/iteminvoice")
 // remove when working
 @CrossOrigin("*")
 public class ItemsOnInvoicesController {

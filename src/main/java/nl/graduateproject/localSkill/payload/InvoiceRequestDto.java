@@ -1,9 +1,8 @@
 package nl.graduateproject.localSkill.payload;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.model.Message;
 import nl.graduateproject.localSkill.model.customer.Customer;
 

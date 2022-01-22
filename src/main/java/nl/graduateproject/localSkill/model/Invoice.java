@@ -25,16 +25,10 @@ public class Invoice {
     @Column
     private String description;
 
-    //  NEWLY ADDED FIELD!!!!
     @Column
     private Double totalPrice;
 
-    // NEWLY ADDED FIELD!!!!!!!!
-//    @Column
-//    private Long customerId;
-
     @ManyToOne
-    //Added JSONIGNORE
     @JsonIgnoreProperties("invoice")
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
@@ -45,15 +39,21 @@ public class Invoice {
 
     @OneToMany(
             mappedBy = "invoice",
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            cascade=CascadeType.ALL
     )
     @JsonIgnoreProperties("invoice")
     private List<ItemOnInvoice> itemsOnInvoice = new ArrayList<>();
 
-//    public Invoice(PlaceInvoiceDto orderDto, Long customerId){
-//        this.customerId = customerId;
-//        this.totalPrice = orderDto.getTotalPrice();
-//    }
+
+
+    public Invoice(String description, Double totalPrice, Customer customer, Message message, List<ItemOnInvoice> itemsOnInvoice) {
+        this.description = description;
+        this.totalPrice = totalPrice;
+        this.customer = customer;
+        this.message = message;
+        this.itemsOnInvoice = itemsOnInvoice;
+    }
 
 
 }

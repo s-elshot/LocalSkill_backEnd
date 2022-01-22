@@ -5,14 +5,17 @@ import nl.graduateproject.localSkill.exceptions.RecordNotFoundException;
 import nl.graduateproject.localSkill.model.Invoice;
 import nl.graduateproject.localSkill.model.ItemOnInvoice;
 import nl.graduateproject.localSkill.model.item.Item;
+import nl.graduateproject.localSkill.payload.InvoiceItemDto;
 import nl.graduateproject.localSkill.payload.InvoiceRequestDto;
 import nl.graduateproject.localSkill.payload.ItemsOnInvoiceRequestDto;
 import nl.graduateproject.localSkill.repository.InvoiceRepository;
 import nl.graduateproject.localSkill.repository.ItemRepository;
+import nl.graduateproject.localSkill.repository.ItemsOnInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +26,9 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private ItemsOnInvoiceRepository itemsOnInvoiceRepository;
 
 
     @Override
@@ -55,6 +61,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         invoice.setCustomer(invoiceDto.getCustomer());
         invoice.setMessage(invoiceDto.getMessage());
 
+
         for (ItemsOnInvoiceRequestDto itemDto: invoiceDto.getItemsOnInvoice()) {
 
             Item item = itemRepository.findById(itemDto.getId()).orElse(null);
@@ -66,8 +73,11 @@ public class InvoiceServiceImpl implements InvoiceService{
             //itemsOnInvoice.setId(item.getId());
             itemsOnInvoice.setItem(item);//Maar dit werkt wel! De rest gaat wel stuk!
             invoice.getItemsOnInvoice().add(itemsOnInvoice);
+
             itemsOnInvoice.setInvoice(invoice);
         }
+
+
         Invoice newInvoice = invoiceRepository.save(invoice);
         return newInvoice.getId();
     }

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomerDetailsServiceImpl implements UserDetailsService {
 
     CustomerRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(CustomerRepository userRepository) {
+    public CustomerDetailsServiceImpl(CustomerRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -24,6 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)  {
         Customer customer = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found: " + username));
-        return UserDetailsImpl.build(customer);
+        return CustomerDetailsImpl.build(customer);
     }
 }

@@ -1,7 +1,7 @@
 package nl.graduateproject.localSkill.service.security.jwt;
 
 import io.jsonwebtoken.*;
-import nl.graduateproject.localSkill.service.UserDetailsImpl;
+import nl.graduateproject.localSkill.service.CustomerDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ public class JwtUtils {
 
     public String generateJwtToken(Authentication authentication) {
 
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        CustomerDetailsImpl userPrincipal = (CustomerDetailsImpl) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))

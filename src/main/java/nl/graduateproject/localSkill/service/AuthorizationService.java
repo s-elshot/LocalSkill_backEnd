@@ -95,6 +95,7 @@ public class AuthorizationService {
                 signUpRequest.getCity(),
                 signUpRequest.getCustomerGuild(),
                 signUpRequest.getUserRole(),
+
                 encoder.encode(signUpRequest.getPassword()));;
 
         Set<String> strRoles = signUpRequest.getRole();
@@ -142,7 +143,7 @@ public class AuthorizationService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        CustomerDetailsImpl userDetails = (CustomerDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());

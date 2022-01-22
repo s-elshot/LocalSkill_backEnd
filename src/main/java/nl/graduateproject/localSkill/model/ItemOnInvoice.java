@@ -1,6 +1,7 @@
 package nl.graduateproject.localSkill.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.graduateproject.localSkill.model.item.Item;
@@ -18,17 +19,12 @@ ItemOnInvoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column
-//    private Long itemId;
-
     @Column
     private int quantity;
 
     @Column
     private double totalPrice;
 
-//    @Column
-//    private Long invoiceId;
 
     @ManyToOne
     @JoinColumn(name = "invoice_id", referencedColumnName = "id")
@@ -38,12 +34,12 @@ ItemOnInvoice {
     @JoinColumn(name = "item_id",referencedColumnName = "id")
     private Item item;
 
-//    public ItemOnInvoice(Long invoiceId, Long item_id, int quantity, double totalPrice) {
-//        this.itemId = item_id;
-//        this.quantity = quantity;
-//        this.totalPrice = totalPrice;
-//        this.invoiceId = invoiceId;
-//    }
-
+    public ItemOnInvoice(Long id, int quantity, double totalPrice, Invoice invoice, Item item) {
+        this.id = id;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.invoice = invoice;
+        this.item = item;
+    }
 }
 

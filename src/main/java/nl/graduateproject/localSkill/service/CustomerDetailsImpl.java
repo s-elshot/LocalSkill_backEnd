@@ -1,7 +1,6 @@
 package nl.graduateproject.localSkill.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import nl.graduateproject.localSkill.model.customer.Customer;
 import nl.graduateproject.localSkill.model.customer.CustomerGuild;
@@ -16,7 +15,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
-public class UserDetailsImpl implements UserDetails {
+public class CustomerDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 1L;
     private final Long id;
@@ -32,9 +31,9 @@ public class UserDetailsImpl implements UserDetails {
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(long id, String username, String email,String firstName, String lastName,
-                           String areaCode, String city, CustomerGuild customerGuild, CustomerType userRole,String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+    public CustomerDetailsImpl(long id, String username, String email, String firstName, String lastName,
+                               String areaCode, String city, CustomerGuild customerGuild, CustomerType userRole, String password,
+                               Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -49,12 +48,12 @@ public class UserDetailsImpl implements UserDetails {
     }
 
 
-    public static UserDetailsImpl build(Customer user) {
+    public static CustomerDetailsImpl build(Customer user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
-        return new UserDetailsImpl(
+        return new CustomerDetailsImpl(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
@@ -141,13 +140,13 @@ public class UserDetailsImpl implements UserDetails {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        UserDetailsImpl user = (UserDetailsImpl) o;
+        CustomerDetailsImpl user = (CustomerDetailsImpl) o;
         return Objects.equals(id, user.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username,email,firstName, lastName,areaCode,city,customerGuild, userRole, password, authorities);
+        return Objects.hash(id, username, email, firstName, lastName, areaCode, city, customerGuild, userRole, password, authorities);
     }
 }
 

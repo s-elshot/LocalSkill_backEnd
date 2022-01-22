@@ -1,5 +1,4 @@
-
-
+-- CUSTOMERS
 insert into customer(id,password,username, first_name, last_name, email, area_code, user_role,  city, customer_guild)
 values (1000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Stephan','Stephan', 'Elshot', 'selshot@gmail.com', '1946AL','GUILDER','Beverwijk','SALES');
 insert into customer(id,password, username,first_name, last_name, email, area_code,  user_role, city, customer_guild )
@@ -22,43 +21,7 @@ insert into customer(id,password,username,first_name, last_name, email, area_cod
 values (10000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Doris','Doris', 'Komproe', 'Doris@yahoo.com', '1066SP', 'GUILDER', 'Amsterdam', 'HEALTHCARE');
 insert into customer(id,password,username,first_name, last_name, email, area_code, user_role, city, customer_guild )
 values (11000,'$2a$10$nKebUWIHJaCdO1zxGjtWQ.B36ofA9yNRJ1NJFHW5rsXO5vkE/Mvhu','Atie','Atie', 'Bijwaard', 'atie@yahoo.com', '1946AL', 'GUILDER', 'Amsterdam', 'SECURITY');
--- --
--- --
--- --
--- --
--- --
--- -- insert into items(name, price, description, number,count, item_type)
--- -- values ('Music lesson 01', 1200, 'Beginnner music lesson', 03,1, 'SERVICE');
--- -- insert into items(name, price, description, number,count, item_type)
--- -- values ('Music performance', 2300, 'Musical performance for 30 minutes', 04,1, 'SERVICE');
--- --
--- --
--- -- insert into invoice_items(invoice_id,items_id)
--- -- values ( '3','1');
--- --
--- --
--- -- insert into invoice_items(invoice_id,items_id)
--- -- values ( '4','2');
--- --
--- -- insert into invoice_items(invoice_id,items_id)
--- -- values ( '3','2');
--- --
--- --
--- --
--- --
--- -- -- CUSTOMERS CLASS
--- -- -- guilders
--- -- -- insert into customer(first_name, last_name, email_adress, area_code, password, enabled, user_role, city, guild)
--- -- -- values ('Stephan', 'Elshot', 'selshot@gmail.com', '1946AL',
--- -- --         '$2y$12$wk21e6ujREi09GvzYHO98OMVS2lmS0fiynwgJu2hVi7p54pGDWXgu',
--- -- --         TRUE, 'GUILDER', 'Beverwijk', 'Baker');
--- -- --
--- -- -- insert into customer(first_name, last_name, email_adress, area_code, password, enabled, user_role, city, guild)
--- -- -- values ('Bill', 'Withers', 'whatisheandwhoishetoyou@gmail.com', '1946AL',
--- -- --         '$2y$12$wk21e6ujREi09GvzYHO98OMVS2lmS0fiynwgJu2hVi7p54pGDWXgu',
--- -- --         TRUE, 'GUILDER', 'Beverwijk', 'Music');
--- --
--- --
+
 -- -- -- -- PRODUCT
 insert into items(name, price, description, number, count, item_type, customer_id)
 values ('Air Jordan I High Strap Just Don BHM - 2015', 10000, 'The shoes featured the 2015 edition of Nike’s Black History Month graphic print with black lining and gold tipped laces and gold buckle on the ankle strap.', 01, 2, 'PRODUCT', 1000);
@@ -176,10 +139,6 @@ values ('private security 3', 3000, 'Private security protection for party small
 
 insert into items(name, price, description, number, count, item_type, customer_id)
 values ('private security 4', 6000, 'Private security protection for party bigger than 100 persons (max 300 persons)', 1, 1, 'SERVICE', 11000);
--- --
--- --
--- --
--- --
 --
 insert into invoice(customer_id, description)
 values (3000, 'Guilder items: SALES');
@@ -187,9 +146,7 @@ insert into invoice(customer_id,description)
 values (2000, 'Guilder items:FOOD');
 insert into invoice(customer_id,description)
 values (2000, 'Guilder items:FOOD');
---
 
--- --
 -- -- -- -- messages
 insert into messages(title, body_text,customer_id)
 values ('Yes it worked!','A confirmation of this relationship is modeled correctly',3000);
@@ -206,9 +163,31 @@ values (2000, 'Guilder items:FOOD');
 insert into invoice(customer_id,description)
 values (2000, 'Guilder items:FOOD');
 
+-- ROLES
 INSERT INTO role(name) VALUES('ROLE_USER');
 INSERT INTO role(name) VALUES('ROLE_MODERATOR');
 INSERT INTO role(name) VALUES('ROLE_ADMIN');
 
--- insert into items_on_invoice(amount,item_id, invoice_id)
--- values (3,3,1);
+-- CUSTOMER_ROLE
+insert into customer_role(customer_id,role_id)
+values (1000,3);
+insert into customer_role(customer_id,role_id)
+values (2000,1);
+insert into customer_role(customer_id,role_id)
+values (3000,2);
+insert into customer_role(customer_id,role_id)
+values (4000,1);
+insert into customer_role(customer_id,role_id)
+values (5000,1);
+insert into customer_role(customer_id,role_id)
+values (6000,1);
+insert into customer_role(customer_id,role_id)
+values (7000,1);
+insert into customer_role(customer_id,role_id)
+values (8000,1);
+insert into customer_role(customer_id,role_id)
+values (9000,1);
+insert into customer_role(customer_id,role_id)
+values (10000,1);
+insert into customer_role(customer_id,role_id)
+values (11000,1);
